@@ -3,10 +3,10 @@ $blog=ControladorBlog::ctrMostrarBlog();
 //echo '<pre class="bg-white">';print_r($blog["dominio"]);echo'</pre>';
 $categorias=ControladorBlog::ctrMostrarCategorias();
 //echo '<pre class="bg-white">';print_r($categorias);echo'</pre>';
-$articulos=ControladorBlog::ctrMostrarConInnerJoin();
+$articulos=ControladorBlog::ctrMostrarConInnerJoin(5);
 
 
-echo '<pre class="bg-white">';print_r($articulos);echo'</pre>';
+//echo '<pre class="bg-white">';print_r($articulos);echo'</pre>';
 ?>
 
 
