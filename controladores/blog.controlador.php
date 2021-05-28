@@ -23,9 +23,22 @@ class ControladorBlog{
 		$respuesta = ModeloBlog::mdlMostrarConInnerJoin($tabla1, $tabla2,$cantidad);
 
 		return $respuesta;
-
-
     }
+
+    /*=============================================
+	Mostrar total articulos
+	=============================================*/
+
+	static public function ctrMostrarTotalArticulos(){
+
+		$tabla = "articulos";
+
+		$respuesta = ModeloBlog::mdlMostrarTotalArticulos($tabla);
+
+		return $respuesta;
+
+	}
+
 
 
 }

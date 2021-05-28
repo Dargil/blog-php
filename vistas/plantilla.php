@@ -5,8 +5,14 @@ $categorias=ControladorBlog::ctrMostrarCategorias();
 //echo '<pre class="bg-white">';print_r($categorias);echo'</pre>';
 $articulos=ControladorBlog::ctrMostrarConInnerJoin(5);
 
-
+$totalArticulos=ControladorBlog::ctrMostrarTotalArticulos();
 //echo '<pre class="bg-white">';print_r($articulos);echo'</pre>';
+
+$totalPaginas= ceil(count($totalArticulos)/5);
+
+
+
+
 ?>
 
 
