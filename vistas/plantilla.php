@@ -3,7 +3,7 @@ $blog=ControladorBlog::ctrMostrarBlog();
 //echo '<pre class="bg-white">';print_r($blog["dominio"]);echo'</pre>';
 $categorias=ControladorBlog::ctrMostrarCategorias();
 //echo '<pre class="bg-white">';print_r($categorias);echo'</pre>';
-$articulos=ControladorBlog::ctrMostrarConInnerJoin(5);
+$articulos=ControladorBlog::ctrMostrarConInnerJoin(0,5);
 
 $totalArticulos=ControladorBlog::ctrMostrarTotalArticulos();
 //echo '<pre class="bg-white">';print_r($articulos);echo'</pre>';
@@ -135,7 +135,7 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 	<script src="vistas/js/plugins/jquery.easing.js"></script>
 
 </head>
-
+<body>
 <?php
 
 	//modulos fijos superiores
@@ -150,15 +150,28 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 	//include "paginas/categorias.php";
 
 	if(isset($_GET["pagina"])){
+
 		$is_found_page=FALSE;
-		foreach($categorias as $key => $value){
-			if($_GET["pagina"]==$value["ruta_categoria"]){
-				include "paginas/categorias.php";
-				$is_found_page=TRUE;
-				break;
+		if(is_numeric($_GET["pagina"])){
+			$cantidad=5;
+			$desde=($_GET["pagina"]-1)*5;
+			$articulos=ControladorBlog::ctrMostrarConInnerJoin($desde,$cantidad);
+			
+
+		}else{
+			foreach($categorias as $key => $value){
+				if($_GET["pagina"]==$value["ruta_categoria"]){
+					include "paginas/categorias.php";
+					$is_found_page=TRUE;
+					break;
+				}
 			}
 		}
-		if(!$is_found_page){
+		
+		if(is_numeric($_GET["pagina"])){
+			include "paginas/inicio.php";
+
+		}else if(!$is_found_page){
 				include "paginas/404.php";
 		}
 
@@ -177,7 +190,7 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 ?>
 
 
-<body>
+<input type="hidden" id="rutaActual" value="<?php echo $blog["dominio"];?>">
 <script src="vistas/js/script.js"></script>
 
 
