@@ -3,7 +3,7 @@ $blog=ControladorBlog::ctrMostrarBlog();
 //echo '<pre class="bg-white">';print_r($blog["dominio"]);echo'</pre>';
 $categorias=ControladorBlog::ctrMostrarCategorias();
 //echo '<pre class="bg-white">';print_r($categorias);echo'</pre>';
-$articulos=ControladorBlog::ctrMostrarConInnerJoin(0,5);
+$articulos=ControladorBlog::ctrMostrarConInnerJoin(0,5,null,null);
 
 $totalArticulos=ControladorBlog::ctrMostrarTotalArticulos();
 //echo '<pre class="bg-white">';print_r($articulos);echo'</pre>';
@@ -155,7 +155,7 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 		if(is_numeric($_GET["pagina"])){
 			$cantidad=5;
 			$desde=($_GET["pagina"]-1)*5;
-			$articulos=ControladorBlog::ctrMostrarConInnerJoin($desde,$cantidad);
+			$articulos=ControladorBlog::ctrMostrarConInnerJoin($desde,$cantidad,null,null);
 			
 
 		}else{
@@ -168,7 +168,7 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 			}
 		}
 		
-		if(is_numeric($_GET["pagina"])){
+		if(is_numeric($_GET["pagina"]) && $_GET["pagina"]>0 && $_GET["pagina"]<=$totalPaginas){
 			include "paginas/inicio.php";
 
 		}else if(!$is_found_page){
