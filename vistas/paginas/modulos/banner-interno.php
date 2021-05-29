@@ -20,7 +20,7 @@ BANNER
 
 				</div>
 				
-				<img src="vistas/img/bannerGrande01.jpg" class="img-fluid">
+				<img src="<?php echo $blog["dominio"]; ?>vistas/img/bannerGrande01.jpg" class="img-fluid">
 
 			</li>		
 

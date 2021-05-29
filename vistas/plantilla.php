@@ -27,30 +27,33 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 	
 	<?php
 
+	$validarRuta="";
 	if(isset($_GET["pagina"])){
-		$is_found_page=FALSE;
 		foreach($categorias as $key => $value){
 			if($_GET["pagina"]==$value["ruta_categoria"]){
-				$is_found_page=TRUE;
-
-				//metadatos de la pagina 404  not found
-				echo '  <title>'.$blog["titulo"].' | '.$value['descripcion_categoria'].'</title>
-				<meta name="title" content="'.$value['titulo_categoria'].'">
-				<meta name="description" content="'.$value['descripcion_categoria'].'">';
-
-
-				$palabras_claves=json_decode($value['p_claves_categoria'],true);
-				$p_claves="";
-				foreach ($palabras_claves as $key =>$value){
-				$p_claves.=$value.", ";
-				}
-				$p_claves=substr($p_claves,0,-2);
-
-				echo '<meta name="keywords" content="'.$p_claves.'">';
+				$validarRuta="categorias";
 				break;
 			}
 		}
-		if(!$is_found_page){
+
+		if($validarRuta=="categorias"){
+
+
+			//metadatos de la pagina 404  not found
+			echo '  <title>'.$blog["titulo"].' | '.$value['descripcion_categoria'].'</title>
+			<meta name="title" content="'.$value['titulo_categoria'].'">
+			<meta name="description" content="'.$value['descripcion_categoria'].'">';
+
+
+			$palabras_claves=json_decode($value['p_claves_categoria'],true);
+			$p_claves="";
+			foreach ($palabras_claves as $key =>$value){
+			$p_claves.=$value.", ";
+			}
+			$p_claves=substr($p_claves,0,-2);
+
+			echo '<meta name="keywords" content="'.$p_claves.'">';
+		}else{
 								//metadatos de la pagina 404  not found
 			echo '  <title>'.$blog["titulo"].'</title>
 					<meta name="title" content="'.$blog["titulo"].'">
@@ -88,7 +91,7 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 	?>
 
 
-	<link rel="icon" href="<?php echo $blog["icono"]; ?>">
+	<link rel="icon" href="<?php echo $blog["dominio"] ;?><?php echo $blog["icono"]; ?>">
 
 	<!--=====================================
 	PLUGINS DE CSS
@@ -103,9 +106,9 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 
 	<!-- JdSlider -->
 	<!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
-	<link rel="stylesheet" href="vistas/css/plugins/jquery.jdSlider.css">
+	<link rel="stylesheet" href="<?php echo $blog["dominio"] ;?>vistas/css/plugins/jquery.jdSlider.css">
 
-	<link rel="stylesheet" href="vistas/css/style.css">
+	<link rel="stylesheet" href="<?php echo $blog["dominio"] ;?>vistas/css/style.css">
 
 	<!--=====================================
 	PLUGINS DE JS
@@ -122,17 +125,17 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 
 	<!-- JdSlider -->
 	<!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
-	<script src="vistas/js/plugins/jquery.jdSlider-latest.js"></script>
+	<script src="<?php echo $blog["dominio"] ;?>vistas/js/plugins/jquery.jdSlider-latest.js"></script>
 	
 	<!-- pagination -->
 	<!-- http://josecebe.github.io/twbs-pagination/ -->
-	<script src="vistas/js/plugins/pagination.min.js"></script>
+	<script src="<?php echo $blog["dominio"] ;?>vistas/js/plugins/pagination.min.js"></script>
 
 	<!-- scrollup -->
 	<!-- https://markgoodyear.com/labs/scrollup/ -->
 	<!-- https://easings.net/es# -->
-	<script src="vistas/js/plugins/scrollUP.js"></script>
-	<script src="vistas/js/plugins/jquery.easing.js"></script>
+	<script src="<?php echo $blog["dominio"] ;?>vistas/js/plugins/scrollUP.js"></script>
+	<script src="<?php echo $blog["dominio"] ;?>vistas/js/plugins/jquery.easing.js"></script>
 
 </head>
 <body>
@@ -148,30 +151,36 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 
 	//include "paginas/inicio.php";
 	//include "paginas/categorias.php";
-
+	$validarRuta="";
 	if(isset($_GET["pagina"])){
 
-		$is_found_page=FALSE;
-		if(is_numeric($_GET["pagina"])){
+		$rutas=explode("/",$_GET["pagina"]);
+
+
+		
+		if(is_numeric($rutas[0])){
 			$cantidad=5;
-			$desde=($_GET["pagina"]-1)*5;
+			$desde=($rutas[0]-1)*5;
 			$articulos=ControladorBlog::ctrMostrarConInnerJoin($desde,$cantidad,null,null);
 			
 
 		}else{
 			foreach($categorias as $key => $value){
-				if($_GET["pagina"]==$value["ruta_categoria"]){
-					include "paginas/categorias.php";
-					$is_found_page=TRUE;
+				if($rutas[0]==$value["ruta_categoria"]){
+					
+					$validarRuta="categorias";
 					break;
 				}
 			}
 		}
 		
-		if(is_numeric($_GET["pagina"]) && $_GET["pagina"]>0 && $_GET["pagina"]<=$totalPaginas){
+
+		if($validarRuta=="categorias"){
+			include "paginas/categorias.php";
+		}else if(is_numeric($rutas[0]) && $rutas[0]<=$totalPaginas || is_numeric($rutas[1] )){
 			include "paginas/inicio.php";
 
-		}else if(!$is_found_page){
+		}else{
 				include "paginas/404.php";
 		}
 
@@ -191,7 +200,7 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 
 
 <input type="hidden" id="rutaActual" value="<?php echo $blog["dominio"];?>">
-<script src="vistas/js/script.js"></script>
+<script src="<?php echo $blog["dominio"] ;?>vistas/js/script.js"></script>
 
 
 </body>

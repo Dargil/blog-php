@@ -47,13 +47,13 @@ CONTENIDO ARTÍCULO
 
 					</div>
 
-					<img src="vistas/img/articulo.png" alt="Lorem ipsum dolor sit amet" class="img-fluid my-lg-3">
+					<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo.png" alt="Lorem ipsum dolor sit amet" class="img-fluid my-lg-3">
 
 					<p class="textoArticulo my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias aliquid laboriosam suscipit magnam distinctio nisi eaque expedita beatae neque nobis dolores corporis laudantium quo voluptatum facilis, aliquam sed deleniti delectus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae asperiores laborum facere est eos in optio suscipit, consequatur animi placeat adipisci, sunt. Unde distinctio odit, facilis quos eveniet et culpa. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus distinctio assumenda porro fugit voluptates officiis atque? Voluptas, soluta eius inventore aspernatur quasi, earum iste maiores porro ipsam, expedita minus.</p>
 
 					<!-- PUBLICIDAD -->
 
-					<img src="vistas/img/ad04.png" class="img-fluid my-3" width="100%">
+					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad04.png" class="img-fluid my-3" width="100%">
 
 					<p class="textoArticulo my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias aliquid laboriosam suscipit magnam distinctio nisi eaque expedita beatae neque nobis dolores corporis laudantium quo voluptatum facilis, aliquam sed deleniti delectus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae asperiores laborum facere est eos in optio suscipit, consequatur animi placeat adipisci, sunt. Unde distinctio odit, facilis quos eveniet et culpa. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus distinctio assumenda porro fugit voluptates officiis atque? Voluptas, soluta eius inventore aspernatur quasi, earum iste maiores porro ipsam, expedita minus.</p>
 
@@ -149,7 +149,7 @@ CONTENIDO ARTÍCULO
 									
 									<a href="articulos.html" class="text-secondary">
 
-										<img src="vistas/img/articulo01.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+										<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo01.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 
 										<h6 class="py-2">Type something here</h6>
 
@@ -163,7 +163,7 @@ CONTENIDO ARTÍCULO
 									
 									<a href="articulos.html" class="text-secondary">
 
-										<img src="vistas/img/articulo02.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+										<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo02.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 									
 										<h6 class="py-2">Type something here</h6>
 
@@ -177,7 +177,7 @@ CONTENIDO ARTÍCULO
 									
 									<a href="articulos.html" class="text-secondary">
 
-										<img src="vistas/img/articulo03.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+										<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo03.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 									
 										<h6 class="py-2">Type something here</h6>
 
@@ -191,7 +191,7 @@ CONTENIDO ARTÍCULO
 									
 									<a href="articulos.html" class="text-secondary">
 
-										<img src="vistas/img/articulo04.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+										<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo04.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 									
 										<h6 class="py-2">Type something here</h6>
 
@@ -235,7 +235,7 @@ CONTENIDO ARTÍCULO
 						
 						<div class="col-3 col-sm-4 col-lg-2 p-2">
 						
-							<img src="vistas/img/user01.jpg" class="img-thumbnail">	
+							<img src="<?php echo $blog["dominio"]; ?>vistas/img/user01.jpg" class="img-thumbnail">	
 
 						</div>
 
@@ -257,7 +257,7 @@ CONTENIDO ARTÍCULO
 
 						<div class="col-3 col-sm-4 col-lg-2 p-2">
 						
-							<img src="vistas/img/user02.jpg" class="img-thumbnail">	
+							<img src="<?php echo $blog["dominio"]; ?>vistas/img/user02.jpg" class="img-thumbnail">	
 
 						</div>
 
@@ -287,7 +287,7 @@ CONTENIDO ARTÍCULO
 
 							<div class="d-none d-md-block col-md-4 col-lg-3">
 								
-								<img src="vistas/img/subirFoto.png" class="img-fluid mt-md-3 mt-xl-2">
+								<img src="<?php echo $blog["dominio"]; ?>vistas/img/subirFoto.png" class="img-fluid mt-md-3 mt-xl-2">
 
 							</div>
 
@@ -301,7 +301,7 @@ CONTENIDO ARTÍCULO
 
 					<!-- PUBLICIDAD -->
 
-					<img src="vistas/img/ad01.jpg" class="img-fluid my-3 d-block d-md-none" width="100%">
+					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad01.jpg" class="img-fluid my-3 d-block d-md-none" width="100%">
 
 
 				</div>
@@ -324,7 +324,7 @@ CONTENIDO ARTÍCULO
 							
 							<a href="articulos.html">
 
-								<img src="vistas/img/articulo05.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+								<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo05.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 
 							</a>
 
@@ -348,7 +348,7 @@ CONTENIDO ARTÍCULO
 							
 							<a href="articulos.html">
 
-								<img src="vistas/img/articulo06.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+								<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo06.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 
 							</a>
 
@@ -372,7 +372,7 @@ CONTENIDO ARTÍCULO
 							
 							<a href="articulos.html">
 
-								<img src="vistas/img/articulo07.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+								<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo07.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 
 							</a>
 
@@ -397,19 +397,19 @@ CONTENIDO ARTÍCULO
 
 				<div class="mb-4">
 					
-					<img src="vistas/img/ad03.png" class="img-fluid">
+					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad03.png" class="img-fluid">
 
 				</div>
 
 				<div class="my-4">
 					
-					<img src="vistas/img/ad02.jpg" class="img-fluid">
+					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid">
 
 				</div>	
 
 				<div class="my-4">
 					
-					<img src="vistas/img/ad06.png" class="img-fluid">
+					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad06.png" class="img-fluid">
 
 				</div>	
 				
