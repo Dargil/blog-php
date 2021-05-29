@@ -182,7 +182,7 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 		if(isset($rutas[1])){
 			if(is_numeric($rutas[1])){
 				$cantidad=5;
-				$desde=($rutas[0]-1)*5;
+				$desde=($rutas[1]-1)*5;
 				$articulos=ControladorBlog::ctrMostrarConInnerJoin($desde,$cantidad,null,null);
 				
 	
