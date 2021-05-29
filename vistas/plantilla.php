@@ -29,8 +29,11 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 
 	$validarRuta="";
 	if(isset($_GET["pagina"])){
+
+		$rutas=explode("/",$_GET["pagina"]);
+
 		foreach($categorias as $key => $value){
-			if($_GET["pagina"]==$value["ruta_categoria"]){
+			if(!is_numeric($rutas[0]) && $rutas[0]==$value["ruta_categoria"] ){
 				$validarRuta="categorias";
 				break;
 			}
@@ -180,12 +183,15 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 		}else if(is_numeric($rutas[0]) && $rutas[0]<=$totalPaginas){
 			include "paginas/inicio.php";
 
+		}else if(isset($rutas[1]) && is_numeric($rutas[1])){
+			include "paginas/inicio.php";
+		}else if(isset($rutas[1]) && !is_numeric($rutas[1])){
+			include "paginas/404.php";
 		}else{
-				include "paginas/404.php";
+			include "paginas/404.php";
 		}
-	}else if(isset($rutas[1]) && is_numeric($rutas[1])){
-		include "paginas/inicio.php";
-	}else{
+	}
+	else{
 		include "paginas/inicio.php";
 	}
 
