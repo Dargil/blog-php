@@ -178,8 +178,33 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 		}
 		
 
+		//indice 1: rutas de articulos o paginacion de categorias
+		if(isset($rutas[1])){
+			if(is_numeric($rutas[1])){
+				$cantidad=5;
+				$desde=($rutas[0]-1)*5;
+				$articulos=ControladorBlog::ctrMostrarConInnerJoin($desde,$cantidad,null,null);
+				
+	
+			}else{
+				foreach($totalArticulos as $key => $value){
+					if($rutas[1]==$value["ruta_articulo"]){
+						
+						$validarRuta="articulos";
+						break;
+					}
+				}
+			}
+		}
+
+
+
+		//validar rutas
+
 		if($validarRuta=="categorias"){
 			include "paginas/categorias.php";
+		}else if($validarRuta=="articulos"){
+			include "paginas/articulos.php";
 		}else if(is_numeric($rutas[0]) && $rutas[0]<=$totalPaginas){
 			include "paginas/inicio.php";
 
