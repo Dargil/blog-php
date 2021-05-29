@@ -59,6 +59,12 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 			<meta name="title" content="'.$value['titulo_categoria'].'">
 			<meta name="description" content="'.$value['descripcion_categoria'].'">';
 
+			echo '<meta property="og:site_name" content="'.$value["titulo_categoria"].'">
+			<meta property="og:title" content="'.$value["titulo_categoria"].'">
+			<meta property="og:description" content="'.$value["descripcion_categoria"].'">
+			<meta property="og:type" content="Type">
+			<meta property="og:image" content="'.$blog["dominio"].$value["img_categoria"].'">
+			<meta property="og:url" content="'.$blog["dominio"].$value["ruta_categoria"].'">';	
 
 			$palabras_claves=json_decode($value['p_claves_categoria'],true);
 			$p_claves="";
@@ -68,6 +74,9 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 			$p_claves=substr($p_claves,0,-2);
 
 			echo '<meta name="keywords" content="'.$p_claves.'">';
+
+
+
 		}else if($validarRuta=="articulos"){
 
 
@@ -76,7 +85,13 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 			<meta name="title" content="'.$value['titulo_articulo'].'">
 			<meta name="description" content="'.$value['descripcion_articulo'].'">';
 
-
+			echo '<meta property="og:site_name" content="'.$value["titulo_articulo"].'">
+			<meta property="og:title" content="'.$value["titulo_articulo"].'">
+			<meta property="og:description" content="'.$value["descripcion_articulo"].'">
+			<meta property="og:type" content="Type">
+			<meta property="og:image" content="'.$blog["dominio"].$value["portada_articulo"].'">
+			<meta property="og:url" content="'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"].'">';	
+			
 			$palabras_claves=json_decode($value['p_claves_articulo'],true);
 			$p_claves="";
 			foreach ($palabras_claves as $key =>$value){
@@ -85,6 +100,8 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 			$p_claves=substr($p_claves,0,-2);
 
 			echo '<meta name="keywords" content="'.$p_claves.'">';
+
+			
 		}
 		else{
 								//metadatos de la pagina 404  not found
@@ -101,6 +118,15 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 			$p_claves=substr($p_claves,0,-2);
 				
 			echo '<meta name="keywords" content="'.$p_claves.'">';
+
+			echo '<meta property="og:site_name" content="'.$blog["titulo"].'">
+			<meta property="og:title" content="'.$blog["titulo"].'">
+			<meta property="og:description" content="'.$blog["descripcion"].'">
+			<meta property="og:type" content="Type">
+			<meta property="og:image" content="'.$blog["dominio"].$blog["portada"].'">
+			<meta property="og:url" content="'.$blog["dominio"].'">';
+
+
 		}
 
 	}else{
@@ -118,6 +144,13 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 			$p_claves=substr($p_claves,0,-2);
 				
 			echo '<meta name="keywords" content="'.$p_claves.'">';
+
+			echo '<meta property="og:site_name" content="'.$blog["titulo"].'">
+			<meta property="og:title" content="'.$blog["titulo"].'">
+			<meta property="og:description" content="'.$blog["descripcion"].'">
+			<meta property="og:type" content="Type">
+			<meta property="og:image" content="'.$blog["dominio"].$blog["portada"].'">
+			<meta property="og:url" content="'.$blog["dominio"].'">';
 				
 	}
 
