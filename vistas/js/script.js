@@ -159,3 +159,7 @@ $(".deslizadorArticulos").jdSlider({
 })
 
 
+
+//compartir articulos
+$('.social-share').shapeShare();
+
