@@ -97,6 +97,11 @@ PAGINACIÓN
 var totalPaginas= Number($(".pagination").attr("totalPaginas"));
 var paginaActual= Number($(".pagination").attr("paginaActual"));
 var rutaActual= $("#rutaActual").val();
+var rutaPagina= $(".pagination").attr("rutaPagina");
+
+if($(".pagination").length !=0){
+
+
 
 $(".pagination").twbsPagination({
 	totalPages: totalPaginas,
@@ -108,10 +113,14 @@ $(".pagination").twbsPagination({
 	next: '<i class="fas fa-angle-right"></i>'
 
 }).on("page",function(evt,page){
-	window.location=rutaActual+page;
-
+	if(rutaPagina !=""){
+		window.location=rutaActual+rutaPagina+"/"+page;
+	}else{
+		window.location=rutaActual+page;
+	}
 
 })
+}
 
 
 

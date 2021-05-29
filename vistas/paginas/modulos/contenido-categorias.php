@@ -3,18 +3,23 @@
 
 if(isset($rutas[0])){
 	$articulos=ControladorBlog::ctrMostrarConInnerJoin(0,5,"ruta_categoria",$rutas[0]);
+    $totalArticulos=ControladorBlog::ctrMostrarTotalArticulos("id_cat",$articulos[0]["id_cat"]);
+//echo '<pre class="bg-white">';print_r($articulos);echo'</pre>';
 
+    $totalPaginas= ceil(count($totalArticulos)/5);
 
 }
 
 //revisar si viene paginacion de categorias
 
 if(isset($rutas[1]) && is_numeric($rutas[1])){
-
+    $paginaActual=$rutas[1];
     $desde=($rutas[1]-1)*5;
     $cantidad=5;
 
     $articulos=ControladorBlog::ctrMostrarConInnerJoin($desde,$cantidad,"ruta_categoria",$rutas[0]);
+}else{
+    $paginaActual=1;
 }
 
 
@@ -90,10 +95,10 @@ CONTENIDO CATEGORIA
 
 
                 <div class="container d-none d-md-block">
+					
+					<ul class="pagination justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>"  rutaPagina="<?php echo $articulos[0]["ruta_categoria"]; ?>"></ul>
 
-                    <ul class="pagination justify-content-center"></ul>
-
-                </div>
+				</div>
 
             </div>
 

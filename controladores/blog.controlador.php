@@ -29,11 +29,11 @@ class ControladorBlog{
 	Mostrar total articulos
 	=============================================*/
 
-	static public function ctrMostrarTotalArticulos(){
+	static public function ctrMostrarTotalArticulos($item,$valor){
 
 		$tabla = "articulos";
 
-		$respuesta = ModeloBlog::mdlMostrarTotalArticulos($tabla);
+		$respuesta = ModeloBlog::mdlMostrarTotalArticulos($tabla,$item,$valor);
 
 		return $respuesta;
 
