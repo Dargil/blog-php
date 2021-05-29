@@ -39,6 +39,18 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 			}
 		}
 
+		if(isset($rutas[1]) ){
+
+			foreach($totalArticulos as $key => $value){
+				if(!is_numeric($rutas[1]) && $rutas[1]==$value["ruta_articulo"] ){
+					$validarRuta="articulos";
+					break;
+				}
+			}
+	
+		}
+
+
 		if($validarRuta=="categorias"){
 
 
@@ -56,7 +68,25 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 			$p_claves=substr($p_claves,0,-2);
 
 			echo '<meta name="keywords" content="'.$p_claves.'">';
-		}else{
+		}else if($validarRuta=="articulos"){
+
+
+			//metadatos de la pagina 404  not found
+			echo '  <title>'.$blog["titulo"].' | '.$value['titulo_articulo'].'</title>
+			<meta name="title" content="'.$value['titulo_articulo'].'">
+			<meta name="description" content="'.$value['descripcion_articulo'].'">';
+
+
+			$palabras_claves=json_decode($value['p_claves_articulo'],true);
+			$p_claves="";
+			foreach ($palabras_claves as $key =>$value){
+			$p_claves.=$value.", ";
+			}
+			$p_claves=substr($p_claves,0,-2);
+
+			echo '<meta name="keywords" content="'.$p_claves.'">';
+		}
+		else{
 								//metadatos de la pagina 404  not found
 			echo '  <title>'.$blog["titulo"].'</title>
 					<meta name="title" content="'.$blog["titulo"].'">
