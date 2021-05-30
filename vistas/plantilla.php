@@ -157,56 +157,61 @@ $totalPaginas= ceil(count($totalArticulos)/5);
 	?>
 
 
-	<link rel="icon" href="<?php echo $blog["dominio"] ;?><?php echo $blog["icono"]; ?>">
+<link rel="icon" href="<?php echo $blog["dominio"];?>vistas/img/icono.jpg">
 
-	<!--=====================================
-	PLUGINS DE CSS
-	======================================-->
-	
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<!--=====================================
+PLUGINS DE CSS
+======================================-->
 
-	<link href="https://fonts.googleapis.com/css?family=Chewy|Open+Sans:300,400" rel="stylesheet">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Chewy|Open+Sans:300,400" rel="stylesheet">
 
-	<!-- JdSlider -->
-	<!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
-	<link rel="stylesheet" href="<?php echo $blog["dominio"] ;?>vistas/css/plugins/jquery.jdSlider.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="<?php echo $blog["dominio"] ;?>vistas/css/style.css">
+<!-- JdSlider -->
+<link rel="stylesheet" href="<?php echo $blog["dominio"];?>vistas/css/plugins/jquery.jdSlider.css">
 
-	<!--=====================================
-	PLUGINS DE JS
-	======================================-->
+<!-- Alertas Notie -->
+<link rel="stylesheet" href="<?php echo $blog["dominio"];?>vistas/css/plugins/notie.min.css">	
 
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="<?php echo $blog["dominio"];?>vistas/css/style.css">
 
-	<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<!--=====================================
+PLUGINS DE JS
+======================================-->
 
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-	<!-- JdSlider -->
-	<!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
-	<script src="<?php echo $blog["dominio"] ;?>vistas/js/plugins/jquery.jdSlider-latest.js"></script>
-	
-	<!-- pagination -->
-	<!-- http://josecebe.github.io/twbs-pagination/ -->
-	<script src="<?php echo $blog["dominio"] ;?>vistas/js/plugins/pagination.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 
-	<!-- scrollup -->
-	<!-- https://markgoodyear.com/labs/scrollup/ -->
-	<!-- https://easings.net/es# -->
-	<script src="<?php echo $blog["dominio"] ;?>vistas/js/plugins/scrollUP.js"></script>
-	<script src="<?php echo $blog["dominio"] ;?>vistas/js/plugins/jquery.easing.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-	<!-- Shape Share -->
-	<!-- https://www.jqueryscript.net/social-media/Social-Share-Plugin-jQuery-Open-Graph-Shape-Share.html -->
-	<script src="<?php echo $blog["dominio"]; ?>vistas/js/plugins/shape.share.js"></script>
+<!-- JdSlider -->
+<!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
+<script src="<?php echo $blog["dominio"];?>vistas/js/plugins/jquery.jdSlider-latest.js"></script>
 
+<!-- pagination -->
+<!-- http://josecebe.github.io/twbs-pagination/ -->
+<script src="<?php echo $blog["dominio"];?>vistas/js/plugins/pagination.min.js"></script>
+
+<!-- scrollup -->
+<!-- https://markgoodyear.com/labs/scrollup/ -->
+<!-- https://easings.net/es# -->
+<script src="<?php echo $blog["dominio"];?>vistas/js/plugins/scrollUP.js"></script>
+<script src="<?php echo $blog["dominio"];?>vistas/js/plugins/jquery.easing.js"></script>
+
+<!-- Shape Share -->
+<!-- https://www.jqueryscript.net/social-media/Social-Share-Plugin-jQuery-Open-Graph-Shape-Share.html -->
+<script src="<?php echo $blog["dominio"]; ?>vistas/js/plugins/shape.share.js"></script>
+
+<!-- Alertas Notie
+https://github.com/jaredreich/notie-->
+<script src="<?php echo $blog["dominio"]; ?>vistas/js/plugins/notie.min.js"></script>
 
 
 </head>
