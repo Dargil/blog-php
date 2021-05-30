@@ -172,15 +172,17 @@ OPINIONES VACÍAS
 
 if($(".opiniones").html()){
 
-	if(document.querySelector(".opiniones").childNodes.length == 1){	
+	if($(".opiniones").html()){
 
-		$(".opiniones").html(`
+		if(document.querySelector(".opiniones").childNodes.length == 1){	
 
-			<p class="pl-3 text-secondary">¡Este artículo no tiene opiniones!</p>
+			$(".opiniones").html(`
 
-		`)
-	}
+				<p class="pl-3 text-secondary">¡Este artículo no tiene opiniones!</p>
 
+			`)
+		}
+}
 	
 /*=============================================
 SUBIR FOTO TEMPORAL DE OPINIÓN
