@@ -247,6 +247,8 @@ https://github.com/jaredreich/notie-->
 					
 					$validarRuta="categorias";
 					break;
+				}else{
+					$validarRuta="buscador";
 				}
 			}
 		}
@@ -277,6 +279,8 @@ https://github.com/jaredreich/notie-->
 
 		if($validarRuta=="categorias"){
 			include "paginas/categorias.php";
+		}else if($validarRuta=="buscador"){
+			include "paginas/buscador.php";
 		}else if($validarRuta=="articulos"){
 			include "paginas/articulos.php";
 		}else if(is_numeric($rutas[0]) && $rutas[0]<=$totalPaginas){
