@@ -289,7 +289,7 @@ CONTENIDO ARTÍCULO
 
                     <!-- FORMULARIO DE OPINIONES -->
 
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
 
                         <input type="hidden" name="id_art" value="<?php echo $articulo[0]["id_articulo"]; ?>">
 
@@ -309,12 +309,14 @@ CONTENIDO ARTÍCULO
 
                             </div>
 
-                            <div class="d-none d-md-block col-md-4 col-lg-3">
+                            <input type="file" name="fotoOpinion" class="d-none" id="fotoOpinion">
+                            
+                            <label for="fotoOpinion" class="d-none d-md-block col-md-4 col-lg-3">
 
                                 <img src="<?php echo $blog["dominio"]; ?>vistas/img/subirFoto.png"
-                                    class="img-fluid mt-md-3 mt-xl-2">
+                                    class="img-fluid mt-md-3 mt-xl-2 prevFotoOpinion">
 
-                            </div>
+                            </label>
 
                         </div>
 
@@ -325,6 +327,7 @@ CONTENIDO ARTÍCULO
                         <?php
 
                             $enviarOpinion=ControladorBlog::ctrEnviarOpinion();
+                            
                             echo '<pre class="bg-white">';print_r($enviarOpinion);echo'</pre>';
                         ?>
 
