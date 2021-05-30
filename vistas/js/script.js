@@ -163,3 +163,22 @@ $(".deslizadorArticulos").jdSlider({
 //compartir articulos
 $('.social-share').shapeShare();
 
+
+
+
+/*=============================================
+OPINIONES VACÍAS
+=============================================*/
+
+if($(".opiniones").html()){
+
+	if(document.querySelector(".opiniones").childNodes.length == 1){	
+
+		$(".opiniones").html(`
+
+			<p class="pl-3 text-secondary">¡Este artículo no tiene opiniones!</p>
+
+		`)
+	}
+
+}

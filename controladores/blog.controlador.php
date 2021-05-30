@@ -40,5 +40,19 @@ class ControladorBlog{
 	}
 
 
+	/*=============================================
+	Mostrar opiniones inner join
+	=============================================*/
+
+	static public function ctrMostrarOpiniones($item, $valor){
+
+		$tabla1 = "opiniones";
+		$tabla2 = "administradores";
+
+		$respuesta = ModeloBlog::mdlMostrarOpiniones($tabla1, $tabla2, $item, $valor);
+
+		return $respuesta;
+
+	}
 
 }
