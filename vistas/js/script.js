@@ -235,7 +235,6 @@ $(".alert").remove();
     }
 
 })
-
 /*=============================================
 BUSCADOR
 =============================================*/
@@ -243,11 +242,17 @@ BUSCADOR
 $(".buscador").change(function(){
 
 	var busqueda = $(this).val().toLowerCase();
+
 	var expresion = /^[a-z0-9ñÑáéíóú ]*$/;
+
 	if(!expresion.test(busqueda)){
+
 		$(".buscador").val("");
+
 	}else{
+
 		var evaluarBusqueda = busqueda.replace(/[0-9ñáéíóú ]/g, "_");
+
 		var rutaBuscador = evaluarBusqueda;
 
 		$(".buscar").click(function(){
