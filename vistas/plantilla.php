@@ -247,6 +247,10 @@ https://github.com/jaredreich/notie-->
 					
 					$validarRuta="categorias";
 					break;
+				}else if($rutas[0]=="sobre-mi"){
+					
+					$validarRuta="sobre-mi";
+					break;
 				}else{
 					$validarRuta="buscador";
 				}
@@ -279,6 +283,8 @@ https://github.com/jaredreich/notie-->
 
 		if($validarRuta=="categorias"){
 			include "paginas/categorias.php";
+		}else if($validarRuta=="sobre-mi"){
+			include "paginas/sobre-mi.php";
 		}else if($validarRuta=="buscador"){
 			include "paginas/buscador.php";
 		}else if($validarRuta=="articulos"){
