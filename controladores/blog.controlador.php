@@ -215,6 +215,19 @@ class ControladorBlog{
 		return $respuesta;
 	}
 
+		/*=============================================
+	Traer anuncios
+	=============================================*/
+
+	static public function ctrTraerAnuncios($valor){
+
+		$tabla = "anuncios";
+
+		$respuesta = ModeloBlog::mdlTraerAnuncios($tabla, $valor);
+
+		return $respuesta;
+
+	}
 
 
 }

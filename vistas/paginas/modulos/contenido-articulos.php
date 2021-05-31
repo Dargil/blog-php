@@ -23,7 +23,7 @@ function limitarForeach($array, $limite){
 
 }
 
-
+$anuncios = ControladorBlog::ctrTraerAnuncios("articulos");
 
 ?>
 
@@ -469,23 +469,19 @@ CONTENIDO ARTÍCULO
 
                 <!-- PUBLICIDAD -->
 
-                <div class="mb-4">
 
-                    <img src="<?php echo $blog["dominio"]; ?>vistas/img/ad03.png" class="img-fluid">
 
-                </div>
+                <?php foreach ($anuncios as $key => $value): ?>
 
-                <div class="my-4">
+                <?php echo $value["codigo_anuncio"]; ?>
 
-                    <img src="<?php echo $blog["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid">
+                <?php endforeach ?>
 
-                </div>
 
-                <div class="my-4">
 
-                    <img src="<?php echo $blog["dominio"]; ?>vistas/img/ad06.png" class="img-fluid">
 
-                </div>
+
+
 
             </div>
 

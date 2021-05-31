@@ -8,7 +8,7 @@ if(isset($rutas[0])){
 
     $totalPaginas= ceil(count($totalArticulos)/5);
     $articulosDestacados = ControladorBlog::ctrArticulosDestacados("id_cat", $articulos[0]["id_cat"]);
-
+   
 }
 
 //revisar si viene paginacion de categorias
@@ -49,7 +49,7 @@ if(isset($rutas[1])){
     $paginaActual=1;
 }
 
-
+$anuncios = ControladorBlog::ctrTraerAnuncios("categorias");
 ?>
 
 
@@ -197,23 +197,20 @@ CONTENIDO CATEGORIA
 
                 <!-- PUBLICIDAD -->
 
-                <div class="mb-4">
 
-                    <img src="<?php echo $blog["dominio"]; ?>vistas/img/ad03.png" class="img-fluid">
 
-                </div>
+                <?php foreach ($anuncios as $key => $value): ?>
 
-                <div class="my-4">
+                <?php echo $value["codigo_anuncio"]; ?>
 
-                    <img src="<?php echo $blog["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid">
+                <?php endforeach ?>
 
-                </div>
 
-                <div class="my-4">
 
-                    <img src="<?php echo $blog["dominio"]; ?>vistas/img/ad05.png" class="img-fluid">
 
-                </div>
+                
+
+                
 
             </div>
 
