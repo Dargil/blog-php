@@ -31,7 +31,7 @@ if(isset($rutas[1]) && is_numeric($rutas[1])){
 	$paginaActual = 1;
 }
 
-
+$anuncios = ControladorBlog::ctrTraerAnuncios("inicio");
 
 ?>
 
@@ -164,7 +164,13 @@ CONTENIDO INICIO
 				</div>
 
 				<!-- PUBLICIDAD -->
+				<!-- PUBLICIDAD -->
 
+				<?php foreach ($anuncios as $key => $value): ?>
+
+				<?php echo $value["codigo_anuncio"]; ?>
+
+				<?php endforeach ?>
 
 			</div>
 

@@ -229,5 +229,21 @@ class ControladorBlog{
 
 	}
 
+	
+	/*=============================================
+	Traer banner
+	=============================================*/
+
+	static public function ctrTraerBanner($valor){
+
+		$tabla = "banner";
+
+		$respuesta = ModeloBlog::mdlTraerBanner($tabla, $valor);
+
+		return $respuesta;
+
+	}
+
+
 
 }
