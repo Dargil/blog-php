@@ -87,55 +87,81 @@ FOOTER
 
             <!-- NEWLETTER -->
 
+
+
             <div class="col-md-5 col-lg-5 col-xl-4 pt-5">
+
+
+
+
+
+
+
 
                 <h6 class="text-white">Inscríbete en nuestro newletter:</h6>
 
-                <div class="input-group my-4">
+                <div id="mc_embed_signup">
+                    <form
+                        action="https://gmail.us6.list-manage.com/subscribe/post?u=939daa3430d1d178b53cda6f9&amp;id=138a71d186"
+                        method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+                        target="_blank" novalidate>
 
-                    <input type="text" class="form-control" placeholder="Ingresa tu Email">
 
-                    <div class="input-group-append">
+                        <div class="mc-field-group">
 
-                        <span class="input-group-text bg-dark text-white">Inscribirse</span>
+                            <div class="input-group my-4">
 
-                    </div>
+                                <input type="email" class="form-control required email" id="mce-EMAIL"
+                                    placeholder="Ingresa tu Email" required>
+
+                                <div class="input-group-append">
+
+                                    <span class="input-group-text bg-dark text-white">
+
+                                        <input type="submit" value="Suscribirse" name="subscribe"
+                                            id="mc-embedded-subscribe" class="btn btn-dark text-white btn-sm p-0">
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div id="mce-responses" class="clear">
+
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+
+                            </div>
+                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                <input type="text" name="b_939daa3430d1d178b53cda6f9_138a71d186" tabindex="-1" value="">
+                            </div>
+
+                        </div>
+
+                    </form>
 
                 </div>
 
                 <div class="p-0 w-100 pt-2">
-
                     <ul class="d-flex justify-content-left p-0">
 
-                        <li>
-                            <a href="https://www.facebook.com" target="_blank">
-                                <i class="fab fa-facebook-f lead text-white mr-3 mr-sm-4"></i>
-                            </a>
-                        </li>
 
-                        <li>
-                            <a href="#" target="_blank">
-                                <i class="fab fa-instagram lead text-white mr-3 mr-sm-4"></i>
-                            </a>
-                        </li>
+                        <?php
 
-                        <li>
-                            <a href="#" target="_blank">
-                                <i class="fab fa-twitter lead text-white mr-3 mr-sm-4"></i>
-                            </a>
-                        </li>
+                            $redes_sociales=json_decode($blog["redes_sociales"],true);
+                            foreach ($redes_sociales as $key =>$value){
 
-                        <li>
-                            <a href="#" target="_blank">
-                                <i class="fab fa-youtube lead text-white mr-3 mr-sm-4"></i>
-                            </a>
-                        </li>
 
-                        <li>
-                            <a href="#" target="_blank">
-                                <i class="fab fa-snapchat-ghost lead text-white mr-3 mr-sm-4"></i>
-                            </a>
-                        </li>
+                                echo '<li>
+                                    <a href="'.$value["url"].'" target="_blank">
+                                        <i class="'.$value["icono"].' lead text-white mr-3 mr-sm-4"></i>
+                                    </a>
+                                    </li>';
+                            }
+
+                        ?>
 
                     </ul>
 

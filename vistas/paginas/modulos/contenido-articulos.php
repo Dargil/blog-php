@@ -1,422 +1,492 @@
+<?php 
+if(isset($rutas[1])){
+	$articulo=ControladorBlog::ctrMostrarConInnerJoin(0,1,"ruta_articulo",$rutas[1]);
+	$totalArticulos=ControladorBlog::ctrMostrarTotalArticulos("id_cat",$articulo[0]["id_cat"]);
+	$opiniones=ControladorBlog::ctrMostrarOpiniones("id_art",$articulo[0]["id_articulo"]);
+
+    $actualizarVistaArticulo = ControladorBlog::ctrActualizarVista($rutas[1]);
+
+}
+
+
+/*=============================================
+Función para limitar foreach
+=============================================*/
+function limitarForeach($array, $limite){
+
+	foreach ($array as $key => $value) {
+		
+		if(!$limite--)	break;
+
+		yield $key => $value;
+	}
+
+}
+
+$anuncios = ControladorBlog::ctrTraerAnuncios("articulos");
+
+?>
+
 
 <!--=====================================
 CONTENIDO ARTÍCULO
 ======================================-->
 
 <div class="container-fluid bg-white contenidoInicio py-2 py-md-4">
-	
-	<div class="container">
 
-		<!-- BREADCRUMB -->
+    <div class="container">
 
-		<a href="categorias.html">
-			
-			<button class="d-block d-sm-none btn btn-info btn-sm mb-2">
-			
-				REGRESAR 
+        <!-- BREADCRUMB -->
 
-			</button>
+        <a href="<?php echo $articulo[0]["ruta_categoria"];?>">
 
-		</a>
+            <button class="d-block d-sm-none btn btn-info btn-sm mb-2">
 
-		<ul class="breadcrumb bg-white p-0 mb-2 mb-md-4 breadArticulo">
+                REGRESAR
 
-			<li class="breadcrumb-item inicio"><a href="index.html">Inicio</a></li>
+            </button>
 
-			<li class="breadcrumb-item"><a href="categorias.html">Mi viaje por Suramérica</a></li>
+        </a>
 
-			<li class="breadcrumb-item active">Type something here</li>
+        <ul class="breadcrumb bg-white p-0 mb-2 mb-md-4 breadArticulo">
 
-		</ul>
-		
-		<div class="row">
-			
-			<!-- COLUMNA IZQUIERDA -->
+            <li class="breadcrumb-item inicio"><a href="<?php echo $blog["dominio"];?>">Inicio</a></li>
 
-			<div class="col-12 col-md-8 col-lg-9 p-0 pr-lg-5">
-				
-				<!-- ARTÍCULO 01 -->
+            <li class="breadcrumb-item"><a
+                    href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"];?>"><?php echo $articulo[0]["descripcion_categoria"];?></a>
+            </li>
 
-				<div class="container">
+            <li class="breadcrumb-item active"><?php echo $articulo[0]["titulo_articulo"];?></li>
 
-					<div class="d-flex">
-					
-						<div class="fechaArticulo">30.09.2018</div>
+        </ul>
 
-						<h3 class="tituloArticulo text-right text-muted pl-3 pt-lg-2">Type something here lorem</h3>
+        <div class="row">
 
-					</div>
+            <!-- COLUMNA IZQUIERDA -->
 
-					<img src="vistas/img/articulo.png" alt="Lorem ipsum dolor sit amet" class="img-fluid my-lg-3">
+            <div class="col-12 col-md-8 col-lg-9 p-0 pr-lg-5">
 
-					<p class="textoArticulo my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias aliquid laboriosam suscipit magnam distinctio nisi eaque expedita beatae neque nobis dolores corporis laudantium quo voluptatum facilis, aliquam sed deleniti delectus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae asperiores laborum facere est eos in optio suscipit, consequatur animi placeat adipisci, sunt. Unde distinctio odit, facilis quos eveniet et culpa. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus distinctio assumenda porro fugit voluptates officiis atque? Voluptas, soluta eius inventore aspernatur quasi, earum iste maiores porro ipsam, expedita minus.</p>
+                <!-- ARTÍCULO 01 -->
 
-					<!-- PUBLICIDAD -->
+                <div class="container">
 
-					<img src="vistas/img/ad04.png" class="img-fluid my-3" width="100%">
+                    <div class="d-flex">
 
-					<p class="textoArticulo my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias aliquid laboriosam suscipit magnam distinctio nisi eaque expedita beatae neque nobis dolores corporis laudantium quo voluptatum facilis, aliquam sed deleniti delectus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae asperiores laborum facere est eos in optio suscipit, consequatur animi placeat adipisci, sunt. Unde distinctio odit, facilis quos eveniet et culpa. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus distinctio assumenda porro fugit voluptates officiis atque? Voluptas, soluta eius inventore aspernatur quasi, earum iste maiores porro ipsam, expedita minus.</p>
+                        <div class="fechaArticulo"><?php echo $articulo[0]["fecha_articulo"];?></div>
 
-					<p class="textoArticulo my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias aliquid laboriosam suscipit magnam distinctio nisi eaque expedita beatae neque nobis dolores corporis laudantium quo voluptatum facilis, aliquam sed deleniti delectus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae asperiores laborum facere est eos in optio suscipit, consequatur animi placeat adipisci, sunt. Unde distinctio odit, facilis quos eveniet et culpa. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, minus distinctio assumenda porro fugit voluptates officiis atque? Voluptas, soluta eius inventore aspernatur quasi, earum iste maiores porro ipsam, expedita minus.</p>
+                        <h3 class="tituloArticulo text-right text-muted pl-3 pt-lg-2">
+                            <?php echo $articulo[0]["titulo_articulo"];?></h3>
 
-					<!-- COMPARTIR EN REDES -->
+                    </div>
 
-					<div class="float-right my-3 btnCompartir">
-						
-						<div class="btn-group text-secondary">
+                    <?php
+					echo $articulo[0]["contenido_articulo"];
 
-							Si te gusto compartelo:
+					?>
+                    <!-- COMPARTIR EN REDES -->
 
-						</div>
-						
-						<div class="btn-group">
-							
-							<button type="button" class="btn border-0 text-white" style="background: #1475E0">
+                    <div class="float-right my-3 btnCompartir">
+
+                        <div class="btn-group text-secondary">
+
+                            Si te gustó compártelo:
+
+                        </div>
+
+                        <div class="btn-group">
+
+                            <button type="button" class="btn border-0 text-white social-share"
+                                style="background: #1475E0" data-share="facebook">
+
+                                <span class="fab fa-facebook pr-1"></span>
+
+                                Facebook
+
+                            </button>
+
+                        </div>
+
+                        <div class="btn-group">
+
+                            <button type="button" class="btn border-0 text-white social-share"
+                                style="background: #00A6FF" data-share="twitter">
+
+                                <span class="fab fa-twitter pr-1"></span>
+
+                                Twitter
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="clearfix"></div>
+
+                    <!-- ETIQUETAS -->
+
+                    <div>
+
+                        <h4>Etiquetas</h4>
+
+                        <?php
+							$tags=json_decode($articulos[0]["p_claves_articulo"],true);
+
+
+							?>
+
+                        <?php foreach ($tags as $key => $value):?>
+                        <a href="<?php echo $blog["dominio"].preg_replace('/[0-9ñÑáéíóúÁÉÍÓÚ ]/', "_", $value); ?>"
+                            class="btn btn-secondary btn-sm m-1"><?php echo $value ; ?></a>
+
+                        <?php endforeach ?>
+
+                    </div>
+
+                    <!-- AVANZAR - RETROCEDER -->
+                    <?php
+					foreach($totalArticulos as $key => $value){
+						if($articulo[0]["id_articulo"]==$value["id_articulo"]){
+							$posicion=$key;
+						}
+
+					}
+
+					?>
+
+
+                    <div class="d-md-flex justify-content-between my-3 d-none">
+
+                        <?php if(($posicion-1)>0):?>
+
+                        <a
+                            href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$totalArticulos[$posicion-1]["ruta_articulo"] ;?>">Leer
+                            artículo anterior</a>
+
+                        <?php endif ?>
+
+                        <?php if(($posicion+1)<count($totalArticulos)):?>
+                        <a
+                            href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$totalArticulos[$posicion+1]["ruta_articulo"] ;?>">Leer
+                            artículo siguiente</a>
+                        <?php endif ?>
+
+                    </div>
+
+                    <!-- DESLIZADOR DE ARTÍCULOS -->
+
+                    <section class="jd-slider deslizadorArticulos my-4">
+
+                        <div class="slide-inner">
+
+                            <ul class="slide-area">
+
+                                <?php foreach($totalArticulos as $key => $value):?>
+
+                                <li class="px-3">
+
+                                    <a href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$value["ruta_articulo"] ;?>"
+                                        class="text-secondary">
+
+                                        <img src="<?php echo $blog["dominio"].$value["portada_articulo"]; ?>"
+                                            alt="<?php echo $value["titulo_articulo"] ;?>" class="img-fluid">
+
+                                        <h6 class="py-2"><?php echo $value["titulo_articulo"] ;?></h6>
+
+                                    </a>
+
+                                    <p class="small"><?php echo substr($value["descripcion_articulo"],0,-110)."..." ;?>
+                                    </p>
+
+                                </li>
+
+
+
+                                <?php endforeach ?>
+
+
+
+
+                            </ul>
+
+                            <a class="prev" href="#">
+
+                                <i class="fas fa-angle-left text-muted"></i>
+
+                            </a>
+
+                            <a class="next" href="#">
+
+                                <i class="fas fa-angle-right text-muted"></i>
+
+                            </a>
+
+                        </div>
+
+                        <div class="controller">
+
+                            <div class="indicate-area"></div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- BLOQUE DE OPINIONES -->
+
+                    <h3 style="color:#8e4876">Opiniones</h3>
+
+                    <hr style="border: 1px solid #79FF39">
+
+                    <div class="row opiniones">
+
+
+						<?php if (count($opiniones) != 0): ?>
+
+							<?php foreach ($opiniones as $key => $value): ?>
+
+								<?php if ($value["aprobacion_opinion"] == 1): ?>
 								
-								<span class="fab fa-facebook pr-1"></span>
-
-								Facebook
-
-							</button>
-
-						</div>
-
-						<div class="btn-group">
-							
-							<button type="button" class="btn border-0 text-white" style="background: #00A6FF">
+									<div class="col-3 col-sm-4 col-lg-2 p-2">
 								
-								<span class="fab fa-twitter pr-1"></span>
+										<img src="<?php echo $blog["dominio"].$value["foto_opinion"];?>" class="img-thumbnail">	
 
-								Twitter
+									</div>
 
-							</button>
+									<div class="col-9 col-sm-8 col-lg-10 p-2 text-muted">
+										
+										<p><?php echo $value["contenido_opinion"]; ?></p>
 
-						</div>
+										<?php 
 
-					</div>
+										$formatoFecha = strtotime($value["fecha_opinion"]);
+										$formatoFecha = date( 'd.m.Y', $formatoFecha);
 
-					<!-- AVANZAR - RETROCEDER -->
+										?>
 
-					<div class="clearfix"></div>
+										<span class="small float-right"><?php echo $value["nombre_opinion"]; ?> | <?php echo $formatoFecha; ?></span>
 
-					<!-- ETIQUETAS -->
+									</div>	
 
-					<div>
+									<?php if ($value["respuesta_opinion"] != null): ?>
 
-						<h4>Etiquetas</h4>
-	
-							<a href="#suramerica" class="btn btn-secondary btn-sm m-1">suramerica</a> 		
-						
-							<a href="#colombia" class="btn btn-secondary btn-sm m-1">colombia</a> 							
-						
-							<a href="#peru" class="btn btn-secondary btn-sm m-1">peru</a> 							
-						
-							<a href="#argentina" class="btn btn-secondary btn-sm m-1">argentina</a> 							
-						
-							<a href="#chile" class="btn btn-secondary btn-sm m-1">chile</a> 							
-						
-							<a href="#brasil" class="btn btn-secondary btn-sm m-1">brasil</a> 							
-						
-							<a href="#ecuador" class="btn btn-secondary btn-sm m-1">ecuador</a> 							
-						
-							<a href="#venezuela" class="btn btn-secondary btn-sm m-1">venezuela</a> 
-							
-							<a href="#paraguay" class="btn btn-secondary btn-sm m-1">paraguay</a> 
-							
-							<a href="#uruguay" class="btn btn-secondary btn-sm m-1">uruguay</a> 
-						
-							<a href="#bolivia" class="btn btn-secondary btn-sm m-1">bolivia</a> 
-																		
-					</div>
+										<div class="col-9 col-sm-8 col-lg-10 p-2 text-muted">
+											
+											<p><?php echo $value["respuesta_opinion"]; ?></p>
 
-				 	<div class="d-md-flex justify-content-between my-3 d-none">
-					    
-					    <a href="articulos.html">Leer artículo anterior</a>
-					    
-					    <a href="articulos.html">Leer artículo siguiente</a>
+											<?php 
 
-				  	</div>
+											$formatoFechaR = strtotime($value["fecha_respuesta"]);
+											$formatoFechaR = date( 'd.m.Y', $formatoFechaR);
 
-				  	<!-- DESLIZADOR DE ARTÍCULOS -->
+											?>
 
-				  	<section class="jd-slider deslizadorArticulos my-4">
-				  		
-						<div class="slide-inner">
-							
-							<ul class="slide-area">
-								
-								<li class="px-3">
-									
-									<a href="articulos.html" class="text-secondary">
+											<span class="small float-right"><?php echo $value["nombre_admin"]; ?> | <?php echo $formatoFechaR; ?></span>
 
-										<img src="vistas/img/articulo01.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+										</div>
 
-										<h6 class="py-2">Type something here</h6>
+										<div class="col-3 col-sm-4 col-lg-2 p-2">
+										
+											<img src="<?php echo $blog["dominio"].$value["foto_admin"];?>" class="img-thumbnail">	
 
-									</a>
+										</div>
+																	
+									<?php endif ?>
 
-									 <p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quibusdam sint porro...</p>
+								<?php endif ?>
 
-								</li>
+							<?php endforeach ?>
 
-								<li class="px-3">
-									
-									<a href="articulos.html" class="text-secondary">
+                        <?php else: ?>
+                        	<p class="pl-3 text-secondary">¡Este artículo no tiene opiniones!</p>
+                        <?php endif ?>
 
-										<img src="vistas/img/articulo02.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
-									
-										<h6 class="py-2">Type something here</h6>
+                    </div>
 
-									</a>
+                    <hr style="border: 1px solid #79FF39">
 
-									<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quibusdam sint porro...</p>
+                    <!-- FORMULARIO DE OPINIONES -->
 
-								</li>
+                    <form method="post" enctype="multipart/form-data">
 
-								<li class="px-3">
-									
-									<a href="articulos.html" class="text-secondary">
+                        <input type="hidden" name="id_art" value="<?php echo $articulo[0]["id_articulo"]; ?>">
 
-										<img src="vistas/img/articulo03.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
-									
-										<h6 class="py-2">Type something here</h6>
+                        <label class="text-muted lead">¿Qué tal te pareció el artículo?</label>
 
-									</a>
+                        <div class="row">
 
-									<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quibusdam sint porro...</p>
+                            <div class="col-12 col-md-8 col-lg-9">
 
-								</li>
+                                <div class="input-group-lg">
 
-								<li class="px-3">
-									
-									<a href="articulos.html" class="text-secondary">
+                                    <input type="text" class="form-control my-3" placeholder="Tu nombre" name="nombre_opinion" required>
 
-										<img src="vistas/img/articulo04.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
-									
-										<h6 class="py-2">Type something here</h6>
+                                    <input type="email" class="form-control my-3" placeholder="Tu email" name="correo_opinion" required>
 
-									</a>
+                                </div>
 
-									<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quibusdam sint porro...</p>
+                            </div>
 
-								</li>
+                            <input type="file" name="fotoOpinion" class="d-none" id="fotoOpinion">
+                            
+                            <label for="fotoOpinion" class="d-none d-md-block col-md-4 col-lg-3">
 
-							</ul>
+                                <img src="<?php echo $blog["dominio"]; ?>vistas/img/subirFoto.png"
+                                    class="img-fluid mt-md-3 mt-xl-2 prevFotoOpinion">
 
-							<a class="prev" href="#">
+                            </label>
 
-				                <i class="fas fa-angle-left text-muted"></i>
+                        </div>
 
-				            </a>
+                        <textarea class="form-control my-3" rows="7" placeholder="Escribe aquí tu mensaje" name="contenido_opinion" required></textarea>
 
-				            <a class="next" href="#">
+                        <input type="submit" class="btn btn-dark btn-lg btn-block" value="Enviar">
 
-				                <i class="fas fa-angle-right text-muted"></i>
+                        <?php
 
-				            </a>
+                            $enviarOpinion=ControladorBlog::ctrEnviarOpinion();
 
-						</div>
+                            echo '<pre class="bg-white">';print_r($enviarOpinion);echo'</pre>';
 
-						 <div class="controller">
+                            //limpiar el formulario
+                            if($enviarOpinion != ""){ 
 
-				            <div class="indicate-area"></div>
+								echo '<script>
 
-				        </div>
+									if ( window.history.replaceState ) {
 
-				  	</section>
+										window.history.replaceState( null, null, window.location.href );
 
-				  	<!-- BLOQUE DE OPINIONES -->
+									}
 
-				  	<h3 style="color:#8e4876">Opiniones</h3>
+								</script>';
 
-				  	<hr style="border: 1px solid #79FF39">
-					
-					<div class="row opiniones">
-						
-						<div class="col-3 col-sm-4 col-lg-2 p-2">
-						
-							<img src="vistas/img/user01.jpg" class="img-thumbnail">	
+								if($enviarOpinion == "ok"){
 
-						</div>
+									echo '<script>
 
-						<div class="col-9 col-sm-8 col-lg-10 p-2 text-muted">
-							
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto beatae, aut sint provident dolorem minus recusandae facere, ipsum magnam, nostrum enim. Error quasi quod ab consectetur explicabo consequuntur obcaecati suscipit!</p>
 
-							<span class="small float-right">Carla Gómez | 20.09.2018</span>
+										notie.alert({
+											type: 1,
+											text: "La opinión ha sido enviada correctamente",
+											time: 10
 
-						</div>	
+										})
 
-						<div class="col-9 col-sm-8 col-lg-10 p-2 text-muted">
-							
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto beatae, aut sint provident dolorem minus recusandae facere, ipsum magnam, nostrum enim. Error quasi quod ab consectetur explicabo consequuntur obcaecati suscipit!</p>
+									</script>';
 
-							<span class="small float-right">Juanito Travel | 20.09.2018</span>
+								}
 
-						</div>
+								if($enviarOpinion == "error"){
 
-						<div class="col-3 col-sm-4 col-lg-2 p-2">
-						
-							<img src="vistas/img/user02.jpg" class="img-thumbnail">	
+									echo '<script>
 
-						</div>
 
-					</div>
+										notie.alert({
+											type: 3,
+											text: "No se permiten caracteres especiales en el formulario",
+											time: 10
 
-					<hr style="border: 1px solid #79FF39">
+										})
 
-					<!-- FORMULARIO DE OPINIONES -->
-					
-					<form>
-						
-						<label class="text-muted lead">¿Qué tal te pareció el artículo?</label>
+									</script>';
 
-						<div class="row">
-							
-							<div class="col-12 col-md-8 col-lg-9">
-								
-								<div class="input-group-lg">
-									
-									<input type="text" class="form-control my-3" placeholder="Tu nombre">
+								}
 
-									<input type="email" class="form-control my-3" placeholder="Tu email">
+								if($enviarOpinion == "error-formato"){
 
-								</div>
+									echo '<script>
 
-							</div>
 
-							<div class="d-none d-md-block col-md-4 col-lg-3">
-								
-								<img src="vistas/img/subirFoto.png" class="img-fluid mt-md-3 mt-xl-2">
+										notie.alert({
+											type: 3,
+											text: "Error en el formato de la imagen, debe ser JPG o PNG",
+											time: 10
 
-							</div>
+										})
 
-						</div>	
+									</script>';
 
-						<textarea class="form-control my-3" rows="7" placeholder="Escribe aquí tu mensaje"></textarea>
-						
-						<input type="submit" class="btn btn-dark btn-lg btn-block" value="Enviar">
+								}
 
-					</form>
+							}
+                        ?>
 
-					<!-- PUBLICIDAD -->
 
-					<img src="vistas/img/ad01.jpg" class="img-fluid my-3 d-block d-md-none" width="100%">
+                    </form>
 
+                    <!-- PUBLICIDAD -->
 
-				</div>
+                    <img src="<?php echo $blog["dominio"]; ?>vistas/img/ad01.jpg"
+                        class="img-fluid my-3 d-block d-md-none" width="100%">
 
-			</div>
 
-			<!-- COLUMNA DERECHA -->
+                </div>
 
-			<div class="d-none d-md-block pt-md-4 pt-lg-0 col-md-4 col-lg-3">		
+            </div>
 
-				<!-- ARTÍCULOS RECIENTES -->
+            <!-- COLUMNA DERECHA -->
 
-				<div class="my-4">
-					
-					<h4>Artículos Recientes</h4>
+            <div class="d-none d-md-block pt-md-4 pt-lg-0 col-md-4 col-lg-3">
 
-					<div class="d-flex my-3">
-						
-						<div class="w-100 w-xl-50 pr-3 pt-2">
-							
-							<a href="articulos.html">
+                <!-- ARTÍCULOS RECIENTES -->
 
-								<img src="vistas/img/articulo05.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+                <div class="my-4">
 
-							</a>
+                    <h4>Artículos Recientes</h4>
 
-						</div>
+                    <?php foreach (limitarForeach($totalArticulos, 3) as $key => $value): ?>
 
-						<div>
+                        <div class="d-flex my-3">
 
-							<a href="articulos.html" class="text-secondary">
+                            <div class="w-100 w-xl-50 pr-3 pt-2">
+                                
+                                <a href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$value["ruta_articulo"]; ?>">
 
-								<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                    <img src="<?php echo $blog["dominio"].$value["portada_articulo"];?>" alt="<?php echo $value["titulo_articulo"]; ?>" class="img-fluid">
 
-							</a>
+                                </a>
 
-						</div>
+                            </div>
 
-					</div>
+                            <div>
 
-					<div class="d-flex my-3">
-						
-						<div class="w-100 w-xl-50 pr-3 pt-2">
-							
-							<a href="articulos.html">
+                                <a href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$value["ruta_articulo"] ?>" class="text-secondary">
 
-								<img src="vistas/img/articulo06.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+                                    <p class="small"><?php echo substr($value["descripcion_articulo"], 0, -150)."..."; ?></p>
 
-							</a>
+                                </a>
 
-						</div>
+                            </div>
 
-						<div>
+                        </div>
 
-							<a href="articulos.html" class="text-secondary">
+                    <?php endforeach ?>
 
-								<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
-							</a>
+                </div>
 
-						</div>
+                <!-- PUBLICIDAD -->
 
-					</div>
 
-					<div class="d-flex my-3">
-						
-						<div class="w-100 w-xl-50 pr-3 pt-2">
-							
-							<a href="articulos.html">
 
-								<img src="vistas/img/articulo07.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+                <?php foreach ($anuncios as $key => $value): ?>
 
-							</a>
+                <?php echo $value["codigo_anuncio"]; ?>
 
-						</div>
+                <?php endforeach ?>
 
-						<div>
 
-							<a href="articulos.html" class="text-secondary">
 
-								<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
-							</a>
 
-						</div>
 
-					</div>
 
+            </div>
 
-				</div>
+        </div>
 
-				<!-- PUBLICIDAD -->
-
-				<div class="mb-4">
-					
-					<img src="vistas/img/ad03.png" class="img-fluid">
-
-				</div>
-
-				<div class="my-4">
-					
-					<img src="vistas/img/ad02.jpg" class="img-fluid">
-
-				</div>	
-
-				<div class="my-4">
-					
-					<img src="vistas/img/ad06.png" class="img-fluid">
-
-				</div>	
-				
-			</div>
-
-		</div>
-
-	</div>
+    </div>
 
 </div>
