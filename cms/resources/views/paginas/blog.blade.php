@@ -40,7 +40,9 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                Start creating your amazing application!
+                                @foreach ($blog as $key => $value)
+                                    {{$value["dominio"]}}<br>
+                                @endforeach
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">

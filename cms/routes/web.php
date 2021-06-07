@@ -23,6 +23,15 @@ Route::view('/opiniones', 'paginas.opiniones');
 Route::view('/banner', 'paginas.banner');
 Route::view('/anuncios', 'paginas.anuncios');
 
+Route::get('/','BlogController@traerBlog');
+Route::get('/administradores', 'AdministradoresController@traerAdministradores');
+Route::get('/categorias', 'CategoriasController@traerCategorias');
+Route::get('/articulos', 'ArticulosController@traerArticulos');
+Route::get('/opiniones', 'OpinionesController@traerOpiniones');
+Route::get('/banner', 'BannerController@traerBanner');
+Route::get('/anuncios', 'AnunciosController@traerAnuncios');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

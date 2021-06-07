@@ -40,7 +40,9 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                Start creating your amazing application!
+                                @foreach ($categorias as $element)
+                                {{$element}}
+                            @endforeach
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
