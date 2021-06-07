@@ -40,9 +40,16 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                @foreach ($articulos as $element)
-                                {{$element}}
-                            @endforeach
+                                <ul>
+                                    @foreach ($articulos as $element)
+                                        <li>
+                                            <h3>{{ $element['titulo_articulo'] }}</h3>
+
+                                            <h5> {{ $element->categorias['titulo_categoria'] }}</h5>
+                                        </li>
+
+                                    @endforeach
+                                </ul>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
