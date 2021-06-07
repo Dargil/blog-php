@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Categorias;
 class CategoriasController extends Controller
 {
-    public function traerCategorias(){
+    public function index(){
         $categorias=Categorias::all();
         return view("paginas.categorias",array("categorias"=>$categorias));
     }
