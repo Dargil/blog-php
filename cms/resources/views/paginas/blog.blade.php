@@ -172,23 +172,44 @@
                                                 {{-- fin del row --}}
 
                                                 <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="input-group mb-3">
-                                                          <div class="input-group-prepend">
-                                                            <div class="input-group-text text-white" style="background:#1475E0">
-                                                                <i class="fab fa-facebook-f"></i>
-                                                            </div>
-                                                          </div>
-                                                          <input type="text" class="form-control" value="https://facebook.com">
-                                                          <div class="input-group-prepend">
-                                                                <div class="input-group-text " style="cursor:pointer">
-                                                                    <span class="bg-danger px-2 rounded-circle">&times;</span>
-                                                                </div>
-                                                              </div>
-                                                        </div>
-                                                      </div>
-                                                  
-                                                  </div>
+
+                                                    @php
+                                                        $redes = json_decode($element->redes_sociales, true);
+                                                        foreach ($redes as $key => $value) {
+                                                            echo '    <div class="col-lg-12">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="input-group-prepend">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="input-group-text text-white"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="background:' .
+                                                                $value['background'] .
+                                                                '">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="' .
+                                                                $value['icono'] .
+                                                                '"></i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <input type="text" class="form-control"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        value="' .
+                                                                $value['url'] .
+                                                                '">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="input-group-prepend">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="input-group-text " style="cursor:pointer">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                class="bg-danger px-2 rounded-circle">&times;</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>';
+                                                        }
+                                                        
+                                                    @endphp
+                                                </div>
+
+
+
+
 
 
 
@@ -201,11 +222,115 @@
 
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 class="card-title">Title</h5>
-                                                <p class="card-text">Content</p>
+
+                                                <div class="row">
+
+                                                    <div class="col-lg-12">
+                                                        {{-- Cambiar Logo --}}
+                                                        <div class="form-group my-2 text-center">
+                                                            <div class="btn btn-default btn-file mb-3">
+                                                                <i class="fas fa-paperclip"></i> Adjuntar Imagen de Logo
+
+                                                                <input type="file" name="logo">
+
+                                                                <input type="hidden" name="logo_actual"
+                                                                    value="{{ $element->logo }}" required>
+
+                                                            </div>
+                                                            <br>
+
+
+                                                            <img src="{{ url('/') }}/{{ $element->logo }}"
+                                                                class="img-fluid py-2 bg-secondary previsualizarImg_logo">
+
+                                                            <p class="help-block small mt-3">Dimensiones: 700px * 200px |
+                                                                Peso Max. 2MB | Formato: JPG o PNG</p>
+
+                                                        </div>
+
+                                                        <hr class="pb-2">
+
+                                                        {{-- Cambiar Portada --}}
+
+                                                        <div class="form-group my-2 text-center">
+
+                                                            <div class="btn btn-default btn-file mb-3">
+
+                                                                <i class="fas fa-paperclip"></i> Adjuntar Imagen de Portada
+
+                                                                <input type="file" name="portada">
+
+                                                                <input type="hidden" name="portada_actual"
+                                                                    value="{{ $element->portada }}" required>
+
+                                                            </div>
+
+                                                            <br>
+
+
+                                                            <img src="{{ url('/') }}/{{ $element->portada }}"
+                                                                class="img-fluid py-2 previsualizarImg_portada">
+
+                                                            <p class="help-block small mt-3">Dimensiones: 700px * 420px |
+                                                                Peso Max. 2MB | Formato: JPG o PNG</p>
+
+                                                        </div>
+
+                                                        <hr class="pb-2">
+
+                                                        {{-- Cambiar Icono --}}
+
+                                                        <div class="form-group my-2 text-center">
+
+                                                            <div class="btn btn-default btn-file mb-3">
+
+                                                                <i class="fas fa-paperclip"></i> Adjuntar Imagen de Icono
+
+                                                                <input type="file" name="icono">
+
+                                                                <input type="hidden" name="icono_actual"
+                                                                    value="{{ $element->icono }}" required>
+
+                                                            </div>
+
+                                                            <br>
+
+                                                            <img src="{{ url('/') }}/{{ $element->icono }}"
+                                                                class="img-fluid py-2 rounded-circle previsualizarImg_icono">
+
+                                                            <p class="help-block small mt-3">Dimensiones: 150px * 150px |
+                                                                Peso Max. 2MB | Formato: JPG o PNG</p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <label>Sobre mi <span class="small">(Intro)</span></label>
+                                                <textarea class="form-control summernote-sm" name="sobre_mi"
+                                                    rows="10">{{ $element->sobre_mi }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <label>Sobre mi <span class="small">(Completo)</span></label>
+                                                <textarea class="form-control summernote-smc" name="sobre_mi_completo"
+                                                    rows="10">{{ $element->sobre_mi_completo }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
 
                                 </div>
 
