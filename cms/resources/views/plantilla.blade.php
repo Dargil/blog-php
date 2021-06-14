@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     {{-- OverlayScrollbars.min.css --}}
 	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/OverlayScrollbars.min.css">
+	{{-- TAGS INPUT --}}
+	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/tagsinput.css">
     {{-- CSS AdminLTE --}}
 	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/adminlte.min.css">
     {{-- google fonts --}}
@@ -32,6 +34,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     {{-- jquery.overlayScrollbars.min.js --}}
 	<script src="{{ url('/') }}/js/plugins/jquery.overlayScrollbars.min.js"></script>
+	{{-- TAGS INPUT --}}
+	{{-- https://www.jqueryscript.net/form/Bootstrap-4-Tag-Input-Plugin-jQuery.html --}}
+	<script src="{{ url('/') }}/js/plugins/tagsinput.js"></script>
     {{-- JS AdminLTE --}}
 	<script src="{{ url('/') }}/js/plugins/adminlte.js"></script>
 

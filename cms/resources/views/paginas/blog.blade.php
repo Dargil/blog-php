@@ -93,7 +93,7 @@
                                                         }
                                                     @endphp
                                                     <input type="text" class="form-control" name="palabras_claves"
-                                                        value="{{ $palabras_claves }}" required>
+                                                        value="{{ $palabras_claves }}" data-role="tagsinput" required>
                                                 </div>
                                                 <hr class="pb-2">
                                                 {{-- Redes Sociales --}}
