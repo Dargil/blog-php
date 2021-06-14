@@ -15,6 +15,8 @@
 	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/OverlayScrollbars.min.css">
 	{{-- TAGS INPUT --}}
 	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/tagsinput.css">
+	{{-- SUMMERNOTE --}}
+	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/summernote.css">
     {{-- CSS AdminLTE --}}
 	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/adminlte.min.css">
     {{-- google fonts --}}
@@ -37,6 +39,9 @@
 	{{-- TAGS INPUT --}}
 	{{-- https://www.jqueryscript.net/form/Bootstrap-4-Tag-Input-Plugin-jQuery.html --}}
 	<script src="{{ url('/') }}/js/plugins/tagsinput.js"></script>
+	{{-- SUMMERNOTE --}}
+	{{-- https://summernote.org/ --}}
+	<script src="{{ url('/') }}/js/plugins/summernote.js"></script>
     {{-- JS AdminLTE --}}
 	<script src="{{ url('/') }}/js/plugins/adminlte.js"></script>
 
@@ -49,6 +54,7 @@
 		@include('modulos.footer')
     </div>
 
-    Hola soy la plantilla
+    
+	<script src="{{url('/')}}/js/codigo.js"></script>
 </body>
 </html>
