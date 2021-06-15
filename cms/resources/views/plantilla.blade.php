@@ -17,6 +17,8 @@
 	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/tagsinput.css">
 	{{-- SUMMERNOTE --}}
 	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/summernote.css">
+	{{-- NOTIE --}}
+	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/notie.css">
     {{-- CSS AdminLTE --}}
 	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/adminlte.min.css">
     {{-- google fonts --}}
@@ -42,6 +44,9 @@
 	{{-- SUMMERNOTE --}}
 	{{-- https://summernote.org/ --}}
 	<script src="{{ url('/') }}/js/plugins/summernote.js"></script>
+	{{-- NOTIE --}}
+	{{-- https://github.com/jaredreich/notie --}}
+	<script src="{{ url('/') }}/js/plugins/notie.js"></script>
     {{-- JS AdminLTE --}}
 	<script src="{{ url('/') }}/js/plugins/adminlte.js"></script>
 
