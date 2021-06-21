@@ -27,7 +27,7 @@
                     <div class="col-12">
                         @foreach ($blog as $element)
                         @endforeach
-                        <form action="{{ url('/') }}/blog/{{ $element->id }}" method="post">
+                        <form action="{{ url('/') }}/blog/{{ $element->id }}" method="post" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <!-- Default box -->
@@ -378,6 +378,20 @@
 
         </script>
     @endif
+
+
+    @if (Session::has('no-validacion-imagen'))
+        <script>
+            notie.alert({
+
+                type: 2,
+                text: '¡Alguna de las imagenes no tiene el formato correcto!',
+                time: 7
+            })
+        </script>
+    @endif
+
+
     @if (Session::has('error'))
 
         <script>
