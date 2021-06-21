@@ -94,12 +94,29 @@ class BlogController extends Controller
 
                 //Subir al servidor la imagen logo
                 if($logo["logo_temporal"] != ""){
-                    //Borrar si se sube un archivo nuevo
+                    //Borrar si se sube
                     unlink($datos["logo_actual"]);
                     $aleatorio = mt_rand(100,999);
                     $rutaLogo = "img/blog/".$aleatorio.".".$logo["logo_temporal"]->guessExtension();
-                    move_uploaded_file($logo["logo_temporal"], $rutaLogo);
-                    
+                    // move_uploaded_file($logo["logo_temporal"], $rutaLogo);
+                    //Redimensionar Imágen
+                    list($ancho, $alto) = getimagesize($logo["logo_temporal"]);
+                    $nuevoAncho = 700;
+                    $nuevoAlto = 200;
+                    if($logo["logo_temporal"]->guessExtension() == "jpeg"){
+                        $origen = imagecreatefromjpeg($logo["logo_temporal"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagejpeg($destino, $rutaLogo);
+                    }
+                    if($logo["logo_temporal"]->guessExtension() == "png"){
+                        $origen = imagecreatefrompng($logo["logo_temporal"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagealphablending($destino, FALSE); 
+                        imagesavealpha($destino, TRUE);
+                        imagecopyresampled($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagepng($destino, $rutaLogo);
+                    }
                 }else{
                     $rutaLogo = $datos["logo_actual"];
                 }
@@ -108,22 +125,61 @@ class BlogController extends Controller
                     unlink($datos["portada_actual"]);
                     $aleatorio = mt_rand(100,999);
                     $rutaPortada = "img/blog/".$aleatorio.".".$portada["portada_temporal"]->guessExtension();
-                    move_uploaded_file($portada["portada_temporal"], $rutaPortada);
-                    
+                    // move_uploaded_file($portada["portada_temporal"], $rutaPortada);
+                    //Redimensionar Imágen
+                    list($ancho, $alto) = getimagesize($portada["portada_temporal"]);
+                    $nuevoAncho = 700;
+                    $nuevoAlto = 420;
+                    if($portada["portada_temporal"]->guessExtension() == "jpeg"){
+                        $origen = imagecreatefromjpeg($portada["portada_temporal"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagejpeg($destino, $rutaPortada);
+                    }
+                    if($portada["portada_temporal"]->guessExtension() == "png"){
+                        $origen = imagecreatefrompng($portada["portada_temporal"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagealphablending( $destino, FALSE); 
+                        imagesavealpha( $destino, TRUE);
+                        imagecopyresampled($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagepng($destino, $rutaPortada);
+                    }
                 }else{
                     $rutaPortada = $datos["portada_actual"];
                 }
                  //Subir al servidor la imagen icono
                  if($icono["icono_temporal"] != ""){
-                    unlink($datos["icono_actual"]);
+                   // unlink($datos["icono_actual"]);
                     $aleatorio = mt_rand(100,999);
                     $rutaIcono = "img/blog/".$aleatorio.".".$icono["icono_temporal"]->guessExtension();
-                    move_uploaded_file($icono["icono_temporal"], $rutaIcono);
-                    
+                    // move_uploaded_file($icono["icono_temporal"], $rutaIcono);
+                    list($ancho, $alto) = getimagesize($icono["icono_temporal"]);
+                    $nuevoAncho = 150;
+                    $nuevoAlto = 150;
+                    if($icono["icono_temporal"]->guessExtension() == "jpeg"){
+                        $origen = imagecreatefromjpeg($icono["icono_temporal"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagejpeg($destino, $rutaIcono);
+                    }
+                    if($icono["icono_temporal"]->guessExtension() == "png"){
+                        $origen = imagecreatefrompng($icono["icono_temporal"]);
+                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+                        imagealphablending( $destino, FALSE); 
+                        imagesavealpha( $destino, TRUE);
+                        imagecopyresampled($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+                        imagepng($destino, $rutaIcono);
+                    }
                 }else{
                     $rutaIcono = $datos["icono_actual"];
                 }
-
+                // Mover todos los ficheros temporales de blog al destino final
+               // $origen = glob('img/temp/blog/*'); 
+                //foreach($origen as $fichero){
+                 //   copy($fichero, "img/blog/".substr($fichero, 14));
+                  //  unlink($fichero);
+                //}
+                //$blog = Blog::all();
                 $actualizar = array("dominio"=> $datos["dominio"],
                                     "servidor"=> $datos["servidor"],
                                     "titulo" => $datos["titulo"],
