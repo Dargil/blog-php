@@ -149,7 +149,7 @@ class BlogController extends Controller
                 }
                  //Subir al servidor la imagen icono
                  if($icono["icono_temporal"] != ""){
-                   // unlink($datos["icono_actual"]);
+                   unlink($datos["icono_actual"]);
                     $aleatorio = mt_rand(100,999);
                     $rutaIcono = "img/blog/".$aleatorio.".".$icono["icono_temporal"]->guessExtension();
                     // move_uploaded_file($icono["icono_temporal"], $rutaIcono);
