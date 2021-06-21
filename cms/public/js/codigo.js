@@ -1,4 +1,10 @@
 /*=============================================
+CAPTURANDO LA RUTA DE MI CMS
+=============================================*/
+
+var ruta = $("#ruta").val();
+
+/*=============================================
 AGREGAR RED
 =============================================*/
 
@@ -130,8 +136,58 @@ $("input[type='file']").change(function() {
     }
 });
 
-/*==========================================================
-SUMMERNOTE
-==========================================================*/
 
-$(".summernote").summernote();
+/*=============================================
+SUMMERNOTE
+=============================================*/
+
+$(".summernote").summernote({
+
+	height: 300,
+	callbacks: {
+
+		onImageUpload: function(files){
+
+			for(var i = 0; i < files.length; i++){
+
+				upload(files[i]);
+
+			}
+
+		}
+
+	}
+
+});
+
+
+/*=============================================
+SUBIR IMAGEN AL SERVIDOR
+=============================================*/
+
+function upload(file){
+
+	var datos = new FormData();	
+	datos.append('file', file, file.name);
+	datos.append("ruta", ruta);
+
+	$.ajax({
+		url: ruta+"/ajax/upload.php",
+		method: "POST",
+		data: datos,
+		contentType: false,
+		cache: false,
+		processData: false,
+		success: function (respuesta) {
+
+			$('.summernote').summernote("insertImage", respuesta);
+
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+          console.error(textStatus + " " + errorThrown);
+      }
+
+	})
+
+}
+
