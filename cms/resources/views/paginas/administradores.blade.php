@@ -69,7 +69,16 @@
                                                         <i class="fas fa-pencil-alt text-white"></i>
                                                     </a>
 
-                                                    <form method="post" action="{{url('/')}}/administradores/{{$value["id"]}}" >
+
+
+                                                    <button class="btn btn-danger btn-sm eliminarRegistro" action="{{url('/')}}/administradores/{{$value["id"]}}" method="DELETE" pagina="administradores">
+                                                      @csrf 
+                                                      <i class="fas fa-trash-alt"></i>
+                          
+                                                    </button>
+
+
+                                                {{--   <form method="post" action="{{url('/')}}/administradores/{{$value["id"]}}" >
                                                       <input type="hidden" name="_method" value="DELETE">
 
                                           
@@ -79,7 +88,7 @@
                                                       </button>
 
                                                     </form>
-
+--}}
 
                                                 </div>
 

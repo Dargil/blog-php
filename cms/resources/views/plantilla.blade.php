@@ -51,6 +51,11 @@
     {{-- NOTIE --}}
     {{-- https://github.com/jaredreich/notie --}}
     <script src="{{ url('/') }}/js/plugins/notie.js"></script>
+
+    {{-- SWEET ALERT --}}
+    {{-- https://github.com/jaredreich/notie --}}
+    <script src="{{ url('/') }}/js/plugins/sweetalert.js"></script>
+
     {{-- JS AdminLTE --}}
     <script src="{{ url('/') }}/js/plugins/adminlte.js"></script>
 

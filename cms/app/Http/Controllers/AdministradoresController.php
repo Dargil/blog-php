@@ -181,10 +181,10 @@ class AdministradoresController extends Controller
 
     		$administrador = Administradores::where("id",$validar[0]["id"])->delete();
 
-    		return redirect("/administradores")->with("ok-eliminar", "");
+    		// return redirect("/administradores")->with("ok-eliminar", "");
 
     		//Responder al AJAX de JS
-    		//return "ok";
+    		return "ok";
     	
     	}else{
 
