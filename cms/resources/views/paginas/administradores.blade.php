@@ -391,14 +391,38 @@ Editar administrador
      $("#editarAdministrador").modal();
 
     </script>
-
     @else
-
     {{$status}}
-
   @endif
  
 @endif
+
+
+
+@if (Session::has("no-validacion"))
+
+<script>
+    notie.alert({ type: 2, text: '¡Hay campos no válidos en el formulario!', time: 10 })
+</script>
+
+@endif
+
+@if (Session::has("error"))
+
+  <script>
+      notie.alert({ type: 3, text: '¡Error en el gestor de administradores!', time: 10 })
+ </script>
+
+@endif
+
+@if (Session::has("ok-editar"))
+
+  <script>
+      notie.alert({ type: 1, text: '¡El administrador ha sido actualizado correctamente!', time: 10 })
+ </script>
+
+@endif
+
 
 @endsection
 
