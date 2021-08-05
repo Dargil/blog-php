@@ -68,9 +68,19 @@
                                                     <a href="{{url('/')}}/administradores/{{$value["id"]}}" class="btn btn-warning btn-sm">
                                                         <i class="fas fa-pencil-alt text-white"></i>
                                                     </a>
-                                                    <button class="btn btn-danger btn-sm">
+
+                                                    <form method="post" action="{{url('/')}}/administradores/{{$value["id"]}}" >
+                                                      <input type="hidden" name="_method" value="DELETE">
+
+                                          
+                                                      @csrf
+                                                      <button type="submit" class="btn btn-danger btn-sm">
                                                         <i class="fas fa-trash-alt"></i>
-                                                    </button>
+                                                      </button>
+
+                                                    </form>
+
+
                                                 </div>
 
                                             </td>
@@ -424,6 +434,21 @@ Editar administrador
 @endif
 
 
+@if (Session::has("ok-eliminar"))
+
+  <script>
+      notie.alert({ type: 1, text: '¡El administrador ha sido eliminado correctamente!', time: 10 })
+ </script>
+
+@endif
+
+@if (Session::has("no-borrar"))
+
+  <script>
+      notie.alert({ type: 2, text: '¡Este administrador no se puede borrar!', time: 10 })
+ </script>
+
+@endif
 @endsection
 
 

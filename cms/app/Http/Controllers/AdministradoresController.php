@@ -161,4 +161,37 @@ class AdministradoresController extends Controller
 
 
 	}
+
+
+	/*=============================================
+    Eliminar un registro
+    =============================================*/
+
+    public function destroy($id, Request $request){
+
+    	$validar = Administradores::where("id", $id)->get();
+    	
+    	if(!empty($validar) && $id != 1){
+
+    		if(!empty($validar[0]["foto"])){
+
+    			unlink($validar[0]["foto"]);
+    		
+    		}
+
+    		$administrador = Administradores::where("id",$validar[0]["id"])->delete();
+
+    		return redirect("/administradores")->with("ok-eliminar", "");
+
+    		//Responder al AJAX de JS
+    		//return "ok";
+    	
+    	}else{
+
+    		return redirect("/administradores")->with("no-borrar", "");
+    	
+
+    	}
+
+    }
 }
