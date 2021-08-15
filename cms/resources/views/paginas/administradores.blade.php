@@ -45,7 +45,7 @@
                                             <th>Acciones</th>
                                         </tr>
                                     <tbody>
-
+{{--
                                     @foreach ($administradores as $key => $value)
                                         <tr>
                                             <td>{{($key+1)}}</td>
@@ -78,7 +78,7 @@
                                                     </button>
 
 
-                                                {{--   <form method="post" action="{{url('/')}}/administradores/{{$value["id"]}}" >
+                                                   <form method="post" action="{{url('/')}}/administradores/{{$value["id"]}}" >
                                                       <input type="hidden" name="_method" value="DELETE">
 
                                           
@@ -88,7 +88,7 @@
                                                       </button>
 
                                                     </form>
---}}
+                                               
 
                                                 </div>
 
@@ -96,7 +96,7 @@
 
                                         </tr>
                                     @endforeach
-
+                                    --}}
                                     </tbody> 
 
                                     </thead>

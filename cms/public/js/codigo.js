@@ -245,8 +245,8 @@ $(document).on("click", ".eliminarRegistro", function(){
 	var action = $(this).attr("action"); 
   	var method = $(this).attr("method");
   	var pagina = $(this).attr("pagina");
-  	 var token = $(this).children("[name='_token']").attr("value");
-  	//var token = $(this).attr("token");
+  	// var token = $(this).children("[name='_token']").attr("value");
+  	var token = $(this).attr("token");
 
 
   	swal({
@@ -315,17 +315,17 @@ $(document).on("click", ".eliminarRegistro", function(){
 DataTable Servidor de administradores
 =============================================*/
 
-// $.ajax({
+ // $.ajax({
 
 // 	url: ruta+"/administradores",
 // 	success: function(respuesta){
 		
 // 		console.log("respuesta", respuesta);
 
-// 	},
+//	},
 // 	error: function (jqXHR, textStatus, errorThrown) {
 //         console.error(textStatus + " " + errorThrown);
-//     }
+//    }
 
 // })
 
@@ -335,7 +335,77 @@ DataTable de administradores
 
 var tablaAdministradores = $("#tablaAdministradores").DataTable({
 	
-	
+	processing: true,
+  	serverSide: true,
+
+  	ajax:{
+  		url: ruta+"/administradores"		
+  	},
+
+  	"columnDefs":[{
+  		"searchable": true,
+  		"orderable": true,
+  		"targets": 0
+  	}],
+
+  	"order":[[0, "desc"]],
+
+  	columns: [
+	  	{
+	    	data: 'id',
+	    	name: 'id'
+	  	},
+	  	{
+	  		data: 'name',
+	    	name: 'name'
+	  	},
+	  	{
+	  		data: 'email',
+	    	name: 'email'
+	  	},
+	  	{
+	  		data: 'foto',
+	    	name: 'foto',
+	    	render: function(data, type, full, meta){
+
+	    		if(data == null){
+
+	    			return '<img src="'+ruta+'/img/administradores/admin.png" class="img-fluid rounded-circle">'
+
+	    		}else{
+
+	    			return '<img src="'+ruta+'/'+data+'" class="img-fluid rounded-circle">'
+	    		}
+
+	    	},
+
+	    	orderable: false
+	  	},
+	  	{
+	  		data: 'rol',
+	    	name: 'rol',
+	    	render: function(data, type, full, meta){
+
+	    		if(data == null){
+
+	    			return 'administrador'
+
+	    		}else{
+
+	    			return data
+	    		}
+
+	    	},
+
+	    	orderable: true
+
+	  	},
+	  	{
+	  		data: 'acciones',
+	    	name: 'acciones'
+	  	}
+
+	],
  	"language": {
 
 	    "sProcessing": "Procesando...",
@@ -365,4 +435,9 @@ var tablaAdministradores = $("#tablaAdministradores").DataTable({
 
 });
 
+tablaAdministradores.on('order.dt search.dt', function(){
 
+	tablaAdministradores.column(0, {search:'applied', order:'applied'}).nodes().each(function(cell, i){ cell.innerHTML = i+1})
+
+
+}).draw();
