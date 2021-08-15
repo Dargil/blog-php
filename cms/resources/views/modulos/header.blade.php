@@ -12,13 +12,21 @@
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
 
+
     <li class="nav-item">
-      <a class="nav-link">
-        Hola, Administrador
+      <a class="nav-link">  
+        
+       @foreach ($administradores as $element)
+
+          @if ($_COOKIE["email_login"] == $element->email)
+             Hola, {{$element->name}}
+          @endif
+         
+       @endforeach 
+
+
       </a>
     </li>
-     
-  </li>
        
   <li class="nav-item">
 
