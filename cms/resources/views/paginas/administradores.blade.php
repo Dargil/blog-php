@@ -1,3 +1,9 @@
+@foreach ($administradores as $element)
+
+@if ($_COOKIE["email_login"] == $element->email)
+               
+@if ($element->rol == "administrador")
+
 @extends('plantilla')
 
 @section('content')
@@ -460,6 +466,15 @@ Editar administrador
 @endif
 @endsection
 
+@else
+
+<script>window.location="{{url('/categorias')}}"</script>
+
+@endif
+
+@endif
+           
+@endforeach 
 
 
 
