@@ -73,6 +73,9 @@
     <script src="{{ url('/') }}/js/plugins/adminlte.js"></script>
 
 </head>
+@if (Route::has('login'))
+
+@auth
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -85,4 +88,8 @@
     <script src="{{ url('/') }}/js/codigo.js"></script>
 </body>
 
+@else
+@include('paginas.login')
+@endauth
+@endif	
 </html>
