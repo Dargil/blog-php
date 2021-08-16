@@ -75,8 +75,8 @@ var tablaCategorias = $("#tablaCategorias").DataTable({
 	    	orderable: false
 	  	},
 	  	{
-	  		data: 'id_categoria',
-	    	name: 'id_categoria'
+	  		data: 'acciones',
+	    	name: 'acciones'
 	  	}
 
 	],
