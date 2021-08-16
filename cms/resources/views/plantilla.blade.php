@@ -24,8 +24,8 @@
     {{-- NOTIE --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/plugins/notie.css">
     <!-- DataTables -->
-	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/dataTables.bootstrap4.min.css">	
-	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url('/') }}/css/plugins/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ url('/') }}/css/plugins/responsive.bootstrap.min.css">
     {{-- CSS AdminLTE --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/plugins/adminlte.min.css">
     {{-- google fonts --}}
@@ -61,12 +61,12 @@
     <script src="{{ url('/') }}/js/plugins/sweetalert.js"></script>
 
 
-	<!-- DataTables 
-	https://datatables.net/-->
-	<script src="{{ url('/') }}/js/plugins/jquery.dataTables.min.js"></script>
-	<script src="{{ url('/') }}/js/plugins/dataTables.bootstrap4.min.js"></script> 
-	<script src="{{ url('/') }}/js/plugins/dataTables.responsive.min.js"></script>
-	<script src="{{ url('/') }}/js/plugins/responsive.bootstrap.min.js"></script>	
+    <!-- DataTables 
+ https://datatables.net/-->
+    <script src="{{ url('/') }}/js/plugins/jquery.dataTables.min.js"></script>
+    <script src="{{ url('/') }}/js/plugins/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ url('/') }}/js/plugins/dataTables.responsive.min.js"></script>
+    <script src="{{ url('/') }}/js/plugins/responsive.bootstrap.min.js"></script>
 
 
     {{-- JS AdminLTE --}}
@@ -75,21 +75,28 @@
 </head>
 @if (Route::has('login'))
 
-@auth
+    @auth
 
-<body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-        @include('modulos.header')
-        @include('modulos.sidebar')
-        @yield('content')
-        @include('modulos.footer')
-    </div>
-    <input type="hidden" id="ruta" value="{{ url('/') }}">
-    <script src="{{ url('/') }}/js/codigo.js"></script>
-</body>
+        <body class="hold-transition sidebar-mini layout-fixed">
+            <div class="wrapper">
+                @include('modulos.header')
+                @include('modulos.sidebar')
+                @yield('content')
+                @include('modulos.footer')
+            </div>
+            <input type="hidden" id="ruta" value="{{ url('/') }}">
+            <script src="{{ url('/') }}/js/codigo.js"></script>
+            <script src="{{ url('/') }}/js/administradores.js"></script>
+            <script src="{{ url('/') }}/js/categorias.js"></script>
+            <script src="{{ url('/') }}/js/articulos.js"></script>
+            <script src="{{ url('/') }}/js/opiniones.js"></script>
+            <script src="{{ url('/') }}/js/banner.js"></script>
+            <script src="{{ url('/') }}/js/anuncios.js"></script>
+        </body>
 
-@else
-@include('paginas.login')
-@endauth
-@endif	
+    @else
+        @include('paginas.login')
+    @endauth
+@endif
+
 </html>
