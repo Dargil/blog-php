@@ -71,7 +71,7 @@
 
                             </div>
                             <!-- /.card-body -->
-                  
+
                             <!-- /.card-footer-->
                         </div>
                         <!-- /.card -->
@@ -83,8 +83,8 @@
     </div>
 
     <!--=====================================
-    Crear Categorías
-    ======================================-->
+        Crear Categorías
+        ======================================-->
     <div class="modal" id="crearCategoria">
 
         <div class="modal-dialog">
@@ -142,7 +142,8 @@
                             </div>
 
                             <input type="text" class="form-control inputRuta" name="ruta_categoria"
-                                placeholder="Ingrese la ruta de la categoría" value="{{ old('ruta_categoria') }}" required>
+                                placeholder="Ingrese la ruta de la categoría" value="{{ old('ruta_categoria') }}"
+                                required>
 
                         </div>
 
@@ -199,4 +200,42 @@
         </div>
 
     </div>
+
+
+
+    @if (Session::has('ok-crear'))
+
+        <script>
+            notie.alert({
+                type: 1,
+                text: '¡La categoría ha sido creada correctamente!',
+                time: 10
+            })
+        </script>
+
+    @endif
+
+    @if (Session::has('no-validacion'))
+
+        <script>
+            notie.alert({
+                type: 2,
+                text: '¡Hay campos no válidos en el formulario!',
+                time: 10
+            })
+        </script>
+
+    @endif
+
+    @if (Session::has('error'))
+
+        <script>
+            notie.alert({
+                type: 3,
+                text: '¡Error en el gestor de categorías!',
+                time: 10
+            })
+        </script>
+
+    @endif
 @endsection
