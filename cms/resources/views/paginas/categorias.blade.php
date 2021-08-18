@@ -83,8 +83,8 @@
     </div>
 
     <!--=====================================
-            Crear Categorías
-            ======================================-->
+                Crear Categorías
+                ======================================-->
     <div class="modal" id="crearCategoria">
 
         <div class="modal-dialog">
@@ -205,8 +205,8 @@
 
 
     <!--=====================================
-    Editar Categorías
-    ======================================-->
+        Editar Categorías
+        ======================================-->
 
     @if (isset($status))
 
@@ -393,6 +393,17 @@
             notie.alert({
                 type: 3,
                 text: '¡Error en el gestor de categorías!',
+                time: 10
+            })
+        </script>
+
+    @endif
+    @if (Session::has('no-borrar'))
+
+        <script>
+            notie.alert({
+                type: 3,
+                text: '¡Error al borrar la categoría!',
                 time: 10
             })
         </script>

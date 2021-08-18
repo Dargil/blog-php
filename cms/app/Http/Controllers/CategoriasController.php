@@ -287,4 +287,35 @@ class CategoriasController extends Controller
 
 
     }
+
+    /*=============================================
+    Eliminar un registro
+    =============================================*/
+
+    public function destroy($id, Request $request){
+
+        $validar = Categorias::where("id_categoria", $id)->get();
+        
+        if(!empty($validar)){
+
+            if(!empty($validar[0]["img_categoria"])){
+
+                unlink($validar[0]["img_categoria"]);
+            
+            }
+
+            $categoria = Categorias::where("id_categoria",$validar[0]["id_categoria"])->delete();
+
+            //Responder al AJAX de JS
+            return "ok";
+        
+        }else{
+
+            return redirect("categorias")->with("no-borrar", "");   
+
+        }
+
+    }
+
+
 }
