@@ -148,4 +148,26 @@ class CategoriasController extends Controller
     }
 
 
+    /*=============================================
+    Mostrar un solo registro
+    =============================================*/
+
+    public function show($id){   
+
+        $categoria = Categorias::where('id_categoria', $id)->get();
+        $blog = Blog::all();
+        $administradores = Administradores::all();
+
+        if(count($categoria) != 0){
+
+            return view("paginas.categorias", array("status"=>200, "categoria"=>$categoria, "blog"=>$blog, "administradores"=>$administradores)); 
+        }
+
+        else{
+            
+            return view("paginas.categorias", array("status"=>404, "blog"=>$blog, "administradores"=>$administradores));
+
+        }
+
+    }
 }
