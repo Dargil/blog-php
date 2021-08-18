@@ -179,6 +179,44 @@ $(".summernote-smc").summernote({
 
 });
 
+$(".summernote-articulos").summernote({
+
+	height: 300,
+	callbacks: {
+
+		onImageUpload: function(files){
+
+			for(var i = 0; i < files.length; i++){
+
+				upload_articulos(files[i]);
+
+			}
+
+		}
+
+	}
+
+});
+
+$(".summernote-editar-articulo").summernote({
+
+	height: 300,
+	callbacks: {
+
+		onImageUpload: function(files){
+
+			for(var i = 0; i < files.length; i++){
+
+				upload_editar_articulo(files[i]);
+
+			}
+
+		}
+
+	}
+
+});
+
 /*=============================================
 SUBIR IMAGEN AL SERVIDOR
 =============================================*/
@@ -188,6 +226,7 @@ function upload_sm(file){
 	var datos = new FormData();	
 	datos.append('file', file, file.name);
 	datos.append("ruta", ruta);
+	datos.append("carpeta", "blog");
 
 	$.ajax({
 		url: ruta+"/ajax/upload.php",
@@ -214,6 +253,7 @@ function upload_smc(file){
 	var datos = new FormData();	
 	datos.append('file', file, file.name);
 	datos.append("ruta", ruta);
+	datos.append("carpeta", "blog");
 
 	$.ajax({
 		url: ruta+"/ajax/upload.php",
@@ -235,6 +275,63 @@ function upload_smc(file){
 
 }
 
+function upload_articulos(file){
+
+	var datos = new FormData();	
+	datos.append('file', file, file.name);
+	datos.append("ruta", ruta);
+	datos.append("carpeta", "articulos");
+
+	$.ajax({
+		url: ruta+"/ajax/upload.php",
+		method: "POST",
+		data: datos,
+		contentType: false,
+		cache: false,
+		processData: false,
+		success: function (respuesta) {
+
+			$('.summernote-articulos').summernote("insertImage", respuesta, function ($image) {
+			  $image.attr('class', 'img-fluid');
+			});
+
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+          console.error(textStatus + " " + errorThrown);
+      }
+
+	})
+
+}
+
+function upload_editar_articulo(file){
+
+	var datos = new FormData();	
+	datos.append('file', file, file.name);
+	datos.append("ruta", ruta);
+	datos.append("carpeta", "articulos");
+
+	$.ajax({
+		url: ruta+"/ajax/upload.php",
+		method: "POST",
+		data: datos,
+		contentType: false,
+		cache: false,
+		processData: false,
+		success: function (respuesta) {
+
+			$('.summernote-editar-articulo').summernote("insertImage", respuesta, function ($image) {
+			  $image.attr('class', 'img-fluid');
+			});
+
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+          console.error(textStatus + " " + errorThrown);
+      }
+
+	})
+
+}
 
 /*=============================================
 Preguntar antes de Eliminar Registro
