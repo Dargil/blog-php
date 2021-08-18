@@ -1,33 +1,32 @@
-
 /*=============================================
-DataTable Servidor de administradores
+DataTable Servidor de artículos
 =============================================*/
 
- // $.ajax({
+// $.ajax({
 
-// 	url: ruta+"/administradores",
+// 	url: ruta+"/articulos",
 // 	success: function(respuesta){
 		
 // 		console.log("respuesta", respuesta);
 
-//	},
+// 	},
 // 	error: function (jqXHR, textStatus, errorThrown) {
 //         console.error(textStatus + " " + errorThrown);
-//    }
+//     }
 
 // })
 
 /*=============================================
-DataTable de administradores
+DataTable de artículos
 =============================================*/
 
-var tablaAdministradores = $("#tablaAdministradores").DataTable({
+var tablaArticulos = $("#tablaArticulos").DataTable({
 	
 	processing: true,
   	serverSide: true,
 
   	ajax:{
-  		url: ruta+"/administradores"		
+  		url: ruta+"/articulos"		
   	},
 
   	"columnDefs":[{
@@ -38,60 +37,62 @@ var tablaAdministradores = $("#tablaAdministradores").DataTable({
 
   	"order":[[0, "desc"]],
 
-  	columns: [
-	  	{
-	    	data: 'id',
-	    	name: 'id'
-	  	},
-	  	{
-	  		data: 'name',
-	    	name: 'name'
-	  	},
-	  	{
-	  		data: 'email',
-	    	name: 'email'
-	  	},
-	  	{
-	  		data: 'foto',
-	    	name: 'foto',
-	    	render: function(data, type, full, meta){
+  	 columns: [{
+	    data: 'id_articulo',
+	    name: 'id_articulo'
 
-	    		if(data == null){
+	  }, 
+	  {
+	    data: 'titulo_categoria',
+	    name: 'titulo_categoria'
 
-	    			return '<img src="'+ruta+'/img/administradores/admin.png" class="img-fluid rounded-circle">'
+	  }, 
+	  {
+	    data: 'portada_articulo',
+	    name: 'portada_articulo',
+	    render: function(data, type, full, meta) {
 
-	    		}else{
+	      return '<img src="'+ruta+'/'+data+'" class="img-fluid">'
 
-	    			return '<img src="'+ruta+'/'+data+'" class="img-fluid rounded-circle">'
-	    		}
+	    },
+	    orderable: false
 
-	    	},
+	  }, 
+	  {
+	    data: 'titulo_articulo',
+	    name: 'titulo_articulo'
 
-	    	orderable: false
-	  	},
-	  	{
-	  		data: 'rol',
-	    	name: 'rol',
-	    	render: function(data, type, full, meta){
+	  }, 
+	  {
+	    data: 'descripcion_articulo',
+	    name: 'descripcion_articulo'
 
-	    		if(data == null){
+	  }, 
+	  {
+	    data: 'p_claves',
+	    name: 'p_claves'
 
-	    			return 'administrador'
+	  }, 
+	  {
+	    data: 'ruta_articulo',
+	    name: 'ruta_articulo',
+	    render: function(data, type, full, meta) {
 
-	    		}else{
+	      return '<p class="validarRuta">'+data+'</p>'
 
-	    			return data
-	    		}
+	     }
 
-	    	},
+	  }, 
+	  {
+	    data: 'cont_articulo',
+	    name: 'cont_articulo',
 
-	    	orderable: true
+	  }, 
+	  {
+	    data: 'acciones',
+	    name: 'acciones'
 
-	  	},
-	  	{
-	  		data: 'acciones',
-	    	name: 'acciones'
-	  	}
+   	  }
 
 	],
  	"language": {
@@ -123,9 +124,9 @@ var tablaAdministradores = $("#tablaAdministradores").DataTable({
 
 });
 
-tablaAdministradores.on('order.dt search.dt', function(){
+tablaArticulos.on('order.dt search.dt', function(){
 
-	tablaAdministradores.column(0, {search:'applied', order:'applied'}).nodes().each(function(cell, i){ cell.innerHTML = i+1})
+	tablaArticulos.column(0, {search:'applied', order:'applied'}).nodes().each(function(cell, i){ cell.innerHTML = i+1})
 
 
 }).draw();
