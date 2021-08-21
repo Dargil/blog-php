@@ -8,18 +8,13 @@ var ruta = $("#ruta").val();
 AGREGAR RED
 =============================================*/
 
-$(document).on("click", ".agregarRed", function() {
-    console.log("alv");
-    var url = $("#url_red").val();
-    var icono = $("#icono_red")
-        .val()
-        .split(",")[0];
-    var color = $("#icono_red")
-        .val()
-        .split(",")[1];
-    console.log(url);
-    $(".listadoRed").append(
-        `
+$(document).on("click", ".agregarRed", function(){
+
+	var url = $("#url_red").val();
+	var icono = $("#icono_red").val().split(",")[0];
+	var color = $("#icono_red").val().split(",")[1];
+
+	$(".listadoRed").append(`
 
 		<div class="col-lg-12">
       
@@ -27,31 +22,21 @@ $(document).on("click", ".agregarRed", function() {
           
           <div class="input-group-prepend">
             
-            <div class="input-group-text text-white" style="background:` +
-            color +
-            `">
+            <div class="input-group-text text-white" style="background:`+color+`">
               
-                <i class="` +
-            icono +
-            `"></i>
+                <i class="`+icono+`"></i>
 
             </div>
 
           </div>
 
-          <input type="text" class="form-control" value="` +
-            url +
-            `">
+          <input type="text" class="form-control" value="`+url+`">
 
           <div class="input-group-prepend">
             
             <div class="input-group-text" style="cursor:pointer">
               
-                <span class="bg-danger px-2 rounded-circle eliminarRed" red="` +
-            icono +
-            `" url="` +
-            url +
-            `">&times;</span>
+                <span class="bg-danger px-2 rounded-circle eliminarRed" red="`+icono+`" url="`+url+`">&times;</span>
 
             </div>
 
@@ -61,81 +46,105 @@ $(document).on("click", ".agregarRed", function() {
 
       </div>
 
-	`
-    );
+	`)
 
-    //Actualizar el registro de la BD
+	//Actualizar el registro de la BD
 
-    var listaRed = JSON.parse($("#listaRed").val());
+	var listaRed = JSON.parse($("#listaRed").val());
+	
+	listaRed.push({
 
-    listaRed.push({
-        url: url,
-        icono: icono,
-        background: color
-    });
+		 "url": url,
+		 "icono": icono,
+		 "background": color
 
-    $("#listaRed").val(JSON.stringify(listaRed));
-});
+	})
+
+	$("#listaRed").val(JSON.stringify(listaRed));
+
+})
 
 /*=============================================
 ELIMINAR RED
 =============================================*/
-$(document).on("click", ".eliminarRed", function() {
-    var listaRed = JSON.parse($("#listaRed").val());
+$(document).on("click", ".eliminarRed", function(){
 
-    var red = $(this).attr("red");
-    var url = $(this).attr("url");
+	var listaRed = JSON.parse($("#listaRed").val());
 
-    for (var i = 0; i < listaRed.length; i++) {
-        if (red == listaRed[i]["icono"] && url == listaRed[i]["url"]) {
-            listaRed.splice(i, 1);
+	var red = $(this).attr("red");
+	var url = $(this).attr("url");
 
-            $(this)
-                .parent()
-                .parent()
-                .parent()
-                .parent()
-                .remove();
+	for(var i = 0; i < listaRed.length; i++){
 
-            $("#listaRed").val(JSON.stringify(listaRed));
-        }
-    }
-});
+		if(red == listaRed[i]["icono"] && url == listaRed[i]["url"]){
+			
+			listaRed.splice(i, 1);
+			
+			$(this).parent().parent().parent().parent().remove();
+
+			$("#listaRed").val(JSON.stringify(listaRed));
+
+		}
+
+	}
+
+
+
+})
 
 /*=============================================
 PREVISUALIZAR IMÁGENES TEMPORALES
 =============================================*/
-$("input[type='file']").change(function() {
-    var imagen = this.files[0];
-    var tipo = $(this).attr("name");
-    /*=============================================
+$("input[type='file']").change(function(){
+
+	var imagen = this.files[0];
+	var tipo = $(this).attr("name");
+	
+	/*=============================================
     VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
     =============================================*/
-    if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png") {
-        $("input[type='file']").val("");
-        notie.alert({
-            type: 3,
-            text: "¡La imagen debe estar en formato JPG o PNG!",
-            time: 7
-        });
-    } else if (imagen["size"] > 2000000) {
-        $("input[type='file']").val("");
-        notie.alert({
-            type: 3,
-            text: "¡La imagen no debe pesar más de 2MB!",
-            time: 7
-        });
-    } else {
-        var datosImagen = new FileReader();
-        datosImagen.readAsDataURL(imagen);
 
-        $(datosImagen).on("load", function(event) {
-            var rutaImagen = event.target.result;
-            $(".previsualizarImg_" + tipo).attr("src", rutaImagen);
-        });
+    if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
+
+    	$("input[type='file']").val("");
+
+    	notie.alert({
+
+		    type: 3,
+		    text: '¡La imagen debe estar en formato JPG o PNG!',
+		    time: 7
+
+		 })
+
+    }else if(imagen["size"] > 2000000){
+
+    	$("input[type='file']").val("");
+
+    	notie.alert({
+
+		    type: 3,
+		    text: '¡La imagen no debe pesar más de 2MB!',
+		    time: 7
+
+		 })
+
+    }else{
+
+    	var datosImagen = new FileReader;
+    	datosImagen.readAsDataURL(imagen);
+
+    	$(datosImagen).on("load", function(event){
+
+    		var rutaImagen = event.target.result;
+
+    		$(".previsualizarImg_"+tipo).attr("src", rutaImagen);
+
+    	})
+
     }
-});
 
+
+})
 
 /*=============================================
 SUMMERNOTE
@@ -179,6 +188,45 @@ $(".summernote-smc").summernote({
 
 });
 
+$(".summernote-articulos").summernote({
+
+	height: 300,
+	callbacks: {
+
+		onImageUpload: function(files){
+
+			for(var i = 0; i < files.length; i++){
+
+				upload_articulos(files[i]);
+
+			}
+
+		}
+
+	}
+
+});
+
+$(".summernote-editar-articulo").summernote({
+
+	height: 300,
+	callbacks: {
+
+		onImageUpload: function(files){
+
+			for(var i = 0; i < files.length; i++){
+
+				upload_editar_articulo(files[i]);
+
+			}
+
+		}
+
+	}
+
+});
+
+
 /*=============================================
 SUBIR IMAGEN AL SERVIDOR
 =============================================*/
@@ -188,6 +236,7 @@ function upload_sm(file){
 	var datos = new FormData();	
 	datos.append('file', file, file.name);
 	datos.append("ruta", ruta);
+	datos.append("carpeta", "blog");
 
 	$.ajax({
 		url: ruta+"/ajax/upload.php",
@@ -198,7 +247,9 @@ function upload_sm(file){
 		processData: false,
 		success: function (respuesta) {
 
-			$('.summernote-sm').summernote("insertImage", respuesta);
+			$('.summernote-sm').summernote("insertImage", respuesta, function ($image) {
+			  $image.attr('class', 'img-fluid');
+			});
 
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
@@ -214,6 +265,7 @@ function upload_smc(file){
 	var datos = new FormData();	
 	datos.append('file', file, file.name);
 	datos.append("ruta", ruta);
+	datos.append("carpeta", "blog");
 
 	$.ajax({
 		url: ruta+"/ajax/upload.php",
@@ -224,7 +276,67 @@ function upload_smc(file){
 		processData: false,
 		success: function (respuesta) {
 
-			$('.summernote-smc').summernote("insertImage", respuesta);
+			$('.summernote-smc').summernote("insertImage", respuesta, function ($image) {
+			  $image.attr('class', 'img-fluid');
+			});
+
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+          console.error(textStatus + " " + errorThrown);
+      }
+
+	})
+
+}
+
+function upload_articulos(file){
+
+	var datos = new FormData();	
+	datos.append('file', file, file.name);
+	datos.append("ruta", ruta);
+	datos.append("carpeta", "articulos");
+
+	$.ajax({
+		url: ruta+"/ajax/upload.php",
+		method: "POST",
+		data: datos,
+		contentType: false,
+		cache: false,
+		processData: false,
+		success: function (respuesta) {
+
+			$('.summernote-articulos').summernote("insertImage", respuesta, function ($image) {
+			  $image.attr('class', 'img-fluid');
+			});
+
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+          console.error(textStatus + " " + errorThrown);
+      }
+
+	})
+
+}
+
+function upload_editar_articulo(file){
+
+	var datos = new FormData();	
+	datos.append('file', file, file.name);
+	datos.append("ruta", ruta);
+	datos.append("carpeta", "articulos");
+
+	$.ajax({
+		url: ruta+"/ajax/upload.php",
+		method: "POST",
+		data: datos,
+		contentType: false,
+		cache: false,
+		processData: false,
+		success: function (respuesta) {
+
+			$('.summernote-editar-articulo').summernote("insertImage", respuesta, function ($image) {
+			  $image.attr('class', 'img-fluid');
+			});
 
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
@@ -310,134 +422,61 @@ $(document).on("click", ".eliminarRegistro", function(){
 
 })
 
-
 /*=============================================
-DataTable Servidor de administradores
+Limpiar las rutas
 =============================================*/
 
- // $.ajax({
+function limpiarUrl(texto){
 
-// 	url: ruta+"/administradores",
-// 	success: function(respuesta){
-		
-// 		console.log("respuesta", respuesta);
+	var texto = texto.toLowerCase();
+	texto = texto.replace(/[á]/g, 'a');
+	texto = texto.replace(/[é]/g, 'e');
+	texto = texto.replace(/[í]/g, 'i');
+	texto = texto.replace(/[ó]/g, 'o');
+	texto = texto.replace(/[ú]/g, 'u');
+	texto = texto.replace(/[ñ]/g, 'n');
+	texto = texto.replace(/ /g, '-');
 
-//	},
-// 	error: function (jqXHR, textStatus, errorThrown) {
-//         console.error(textStatus + " " + errorThrown);
-//    }
+	return texto;
 
-// })
+}
+
+$(document).on("keyup", ".inputRuta", function(){
+
+	$(this).val(
+
+	 	limpiarUrl($(this).val())
+
+	)
+
+})
 
 /*=============================================
-DataTable de administradores
+Evitar repetir ruta 
 =============================================*/
 
-var tablaAdministradores = $("#tablaAdministradores").DataTable({
-	
-	processing: true,
-  	serverSide: true,
+$(document).on("change",".inputRuta", function(){
 
-  	ajax:{
-  		url: ruta+"/administradores"		
-  	},
+	$(".alert").remove();
 
-  	"columnDefs":[{
-  		"searchable": true,
-  		"orderable": true,
-  		"targets": 0
-  	}],
+	var valorRuta = $(this).val();
+	var validarRuta = $(".validarRuta");
 
-  	"order":[[0, "desc"]],
+	for(var i = 0; i < validarRuta.length; i++){
 
-  	columns: [
-	  	{
-	    	data: 'id',
-	    	name: 'id'
-	  	},
-	  	{
-	  		data: 'name',
-	    	name: 'name'
-	  	},
-	  	{
-	  		data: 'email',
-	    	name: 'email'
-	  	},
-	  	{
-	  		data: 'foto',
-	    	name: 'foto',
-	    	render: function(data, type, full, meta){
+		 if($(validarRuta[i]).html() == valorRuta){
 
-	    		if(data == null){
+		 	 $(".inputRuta").val("");
+		 	 $(".inputRuta").parent().after(`
 
-	    			return '<img src="'+ruta+'/img/administradores/admin.png" class="img-fluid rounded-circle">'
+				<div class="alert alert-danger">¡Error! Esta ruta ya existe en la base de datos</div>	
 
-	    		}else{
+		 	 `)
 
-	    			return '<img src="'+ruta+'/'+data+'" class="img-fluid rounded-circle">'
-	    		}
+		 }
 
-	    	},
+	}
 
-	    	orderable: false
-	  	},
-	  	{
-	  		data: 'rol',
-	    	name: 'rol',
-	    	render: function(data, type, full, meta){
-
-	    		if(data == null){
-
-	    			return 'administrador'
-
-	    		}else{
-
-	    			return data
-	    		}
-
-	    	},
-
-	    	orderable: true
-
-	  	},
-	  	{
-	  		data: 'acciones',
-	    	name: 'acciones'
-	  	}
-
-	],
- 	"language": {
-
-	    "sProcessing": "Procesando...",
-	    "sLengthMenu": "Mostrar _MENU_ registros",
-	    "sZeroRecords": "No se encontraron resultados",
-	    "sEmptyTable": "Ningún dato disponible en esta tabla",
-	    "sInfo": "Mostrando registros del _START_ al _END_",
-	    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0",
-	    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-	    "sInfoPostFix": "",
-	    "sSearch": "Buscar:",
-	    "sUrl": "",
-	    "sInfoThousands": ",",
-	    "sLoadingRecords": "Cargando...",
-	    "oPaginate": {
-	      "sFirst": "Primero",
-	      "sLast": "Último",
-	      "sNext": "Siguiente",
-	      "sPrevious": "Anterior"
-	    },
-	    "oAria": {
-	      "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-	      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	    }
-
-  	}
-
-});
-
-tablaAdministradores.on('order.dt search.dt', function(){
-
-	tablaAdministradores.column(0, {search:'applied', order:'applied'}).nodes().each(function(cell, i){ cell.innerHTML = i+1})
+})
 
 
-}).draw();
